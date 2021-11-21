@@ -47,7 +47,18 @@ http.createServer((request, response) => {
       else
       {
         //Displays html page based on the url that is typed.
-        response.writeHead(200, { "Content-Type": "text/html" });
+        if(file.includes(".svg"))
+        {
+          response.writeHead(200,{ "Content-Type": "image/svg+xml" });
+        }
+        else if(file.includes(".css"))
+        {
+          response.writeHead(200,{ "Content-Type": "text/css" });
+        }
+        else
+        {
+          response.writeHead(200, { "Content-Type": "text/html" });
+        }
         response.write(data);
         response.end();
       }
