@@ -1,0 +1,25 @@
+{
+  "name": "travel-experts-project",
+  "version": "1.0.0",
+  "description": "Travel experts project containing all the html,javascript,node.js and images for the webpage.",
+  "main": "jquery-3.6.0.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JackyLuong/Travel-Experts-Project.git"
+  },
+  "keywords": [
+    "Travel",
+    "vacation",
+    "hotel",
+    "trip"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JackyLuong/Travel-Experts-Project/issues"
+  },
+  "homepage": "https://github.com/JackyLuong/Travel-Experts-Project#readme"
+}
