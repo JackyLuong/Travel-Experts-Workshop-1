@@ -1,11 +1,16 @@
+header
+{
+    background-color: #101425;
+    float:left;
+}
+.navButtons
+{
+    float: right;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
 #logo
 {
-    width: 30%;
-    height:30%;
-    margin-bottom: 20px;
-}
-#background2
-{
-    padding-bottom: 390px;
-    margin: auto;
+    width: 200px;
+    height:auto;
 }

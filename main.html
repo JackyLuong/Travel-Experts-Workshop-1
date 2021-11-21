@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head> 
-		<title> Travel Experts Homepage</title> <!--- Title of the page --->
+		<title> Travel Experts Home</title> <!--- Title of the page --->
 		
 		<meta charset = "UTF-8"> </meta> <!--- Converts ASCII to UTF-8 so it covers almost all characters and symbols in the world --->
 		<meta name = "description" content = "Travel at the best price"></meta> <!--- Displays a short description when searched --->
@@ -25,25 +25,27 @@
 	
 	<body>
         <!--Header-->
-        <div class = "w-75  bg-white" id = "background2">
-            <header class = "container-fluid bg-dark">
+        <header class = "container-fluid">
+            <div class = "container">
                 <img id = "logo" src = "TravelExpertslogo.svg"></img>
-                <button type = "button" class = "btn btn-secondary text-white" onclick = "goToLinkInPage(0)">Home</button>
-                <button type = "button" class = "btn btn-secondary text-white" onclick = "goToLinkInPage(2)">About Us</button>
-                <button type = "button" class = "btn btn-secondary text-white" onclick = "goToLinkInPage(1)">Contact</button>
-            </header>		
-
-            <br/>
-
-            <!--Image Slide and a description of the images-->
-            <div class = "text-center">
-                
+                <div class = "navButtons">
+                    <button type = "button" class = "btn btn-secondary text-white" onclick = "goToLinkInPage(0)">Home</button>
+                    <button type = "button" class = "btn btn-secondary text-white" onclick = "goToLinkInPage(2)">About Us</button>
+                    <button type = "button" class = "btn btn-secondary text-white" onclick = "goToLinkInPage(1)">Contact</button>
+                </div>
             </div>
+        </header>		
 
-            <!--Footer-->
-            <footer class = "container">
-                This Page is copyrighted &#169; to me, 2021
-            </footer>
+        <br/>
+
+        <!--Image Slide and a description of the images-->
+        <div class = "text-center">
+            
         </div>
+
+        <!--Footer-->
+        <footer class = "container">
+            This Page is copyrighted &#169; to me, 2021
+        </footer>
 	</body>
 </html>
