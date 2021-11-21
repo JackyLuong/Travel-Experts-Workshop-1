@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/JackyLuong/Travel-Experts-Project/issues"
   },
-  "homepage": "https://github.com/JackyLuong/Travel-Experts-Project#readme"
+  "homepage": "https://github.com/JackyLuong/Travel-Experts-Project#readme",
+  "dependencies": {
+    "load-svg-file": "^1.0.8"
+  }
 }
