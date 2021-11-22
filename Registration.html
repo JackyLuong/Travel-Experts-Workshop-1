@@ -15,6 +15,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 		
         <link rel = "stylesheet" type = "text/css"  href="base.css"></link>
+        <link rel ="icon" href = "img/TravelExpertsLogoMini.svg"></link>
 
         <!--JQuery 3.6.0-->
 		<script src = "jquery-3.6.0.js"></script>
@@ -24,26 +25,43 @@
 	</head>
 	
 	<body>
-        <!--Header-->
-        <div class = "w-75  bg-white" id = "background2">
-            <header class = "container-fluid bg-dark">
-                <img id = "logo" src = "TravelExpertslogo.svg"></img>
-                <button type = "button" class = "btn btn-secondary text-white" onclick = "goToLinkInPage(0)">Home</button>
-                <button type = "button" class = "btn btn-secondary text-white" onclick = "goToLinkInPage(2)">About Us</button>
-                <button type = "button" class = "btn btn-secondary text-white" onclick = "goToLinkInPage(1)">Contact</button>
-            </header>		
+        <!--Header that contains the logo and the navigation buttons that lead to other pages in the website
+            uses: navLinks.js.goToLinkPage(index) function line 4.
+            uses: navLinks.js.changeDropDownIcon function line 8.
+            uses: navLinks.js.changeDropDownIcon function line 13.-->  
+        <header class = "container-fluid">
+            <div class = "container">
+                <!--logo-->
+                <img id = "logo" src = "img/TravelExpertslogo.svg"></img>
+                <div class = "navButtons">
+                    <!--Navigation buttons-->
+                    <button type = "button"  onclick = "goToLinkInPage(0)">Home</button>
+                    <button type = "button"  onclick = "goToLinkInPage(1)">Contact</button>
+                    <button type = "button"  style ="background-color: royalblue" onclick = "goToLinkInPage(2)">Sign In</button>
 
-            <br/>
-
-            <!--Image Slide and a description of the images-->
-            <div class = "text-center">
-                
+                    <!--If the screen width is too small, the buttons will an icon to later display those buttons in a dropdown menu-->
+                    <img id = "navMiniButtonIcon" src = "img/DropDownIcon.svg" onmouseover="changeDropDownIcon(1);" onmouseout="changeDropDownIcon(0)"
+                     onclick = "displayDropDown();"></img>
+                </div>
             </div>
+            
+            <!--Drop down menu-->
+            <div class = "container-fluid bg-white" id= "navMiniMenu">
+                <button type = "button"  onclick = "goToLinkInPage(0)">Home</button></br>
+                <button type = "button"  onclick = "goToLinkInPage(1)">Contact</button></br>
+                <button type = "button"  style ="background-color: royalblue" onclick = "goToLinkInPage(2)">Sign In</button>
+            </div>
+        </header>		
+        <br/>
 
-            <!--Footer-->
-            <footer class = "container">
-                This Page is copyrighted &#169; to me, 2021
-            </footer>
+        <!--main container for content-->
+        <div class = "text-center">
+            
         </div>
+
+        <!--Footer-->
+        <footer class = "container">
+            This Page is copyrighted &#169; to me, 2021
+        </footer>
 	</body>
 </html>

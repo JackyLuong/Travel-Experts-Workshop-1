@@ -10,7 +10,7 @@ http.createServer((request, response) => {
   var file = "." + parsedAddress.pathname;
   
   //Reads url to see if there is a favicon at the end of it to add
-  if(parsedAddress.path ==="/favicon.ico")
+  if(parsedAddress.path =="/favicon.ico")
   {
       fs.readFile(file, (err, data) => {
         if(err)
@@ -46,15 +46,17 @@ http.createServer((request, response) => {
       }
       else
       {
-        //Displays html page based on the url that is typed.
+        //Reads and writes svg files
         if(file.includes(".svg"))
         {
           response.writeHead(200,{ "Content-Type": "image/svg+xml" });
         }
+        //Reads and write css files
         else if(file.includes(".css"))
         {
           response.writeHead(200,{ "Content-Type": "text/css" });
         }
+        //Reads and write html files
         else
         {
           response.writeHead(200, { "Content-Type": "text/html" });
