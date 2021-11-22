@@ -1,13 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 header
 {
     background-color: #101425;
     float:left;
+}
+body
+{
+    font-family: 'Lato', sans-serif;
 }
 .navButtons
 {
     float: right;
     margin-top: 15px;
     margin-bottom: 15px;
+    font-family: 'Lato', sans-serif;
+}
+#navMiniButtonIcon
+{
+    width:20px;
+    height:auto;
+    visibility: hidden;
+    float:right;
+}
+@media only screen and (max-width:600px)
+{
+    .navButtons button
+    {
+        visibility: hidden;
+    }
+    #navMiniButtonIcon
+    {
+        visibility: visible;
+    }
+}
+.navButtons button
+{
+    background:transparent;
+    border-radius:10px;
+    border: transparent;
+    color:white;
+}
+.navButtons button:hover
+{
+    color:#FDAF2F;
+}
+#menuButton
+{
+    color:#FDAF2F; 
 }
 #logo
 {
