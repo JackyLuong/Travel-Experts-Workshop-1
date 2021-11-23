@@ -17,7 +17,7 @@ function changeDropDownIcon(index)
 function displayDropDown()
 {
     //Opens the drop down menu.
-    if(dropDownVisible == true)
+    if(dropDownVisible == true && window.innerWidth <= 600)
     {
         document.getElementById("navMiniMenu").style.visibility = "visible";
         dropDownVisible = false;

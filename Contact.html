@@ -22,6 +22,18 @@
         
         <!--Links for nav bar-->
         <script src = "navLinks.js"></script>
+
+        <script>
+            $(window).resize(function()
+            {
+                console.log("drop down icon has changed");
+                if(window.innerWidth >= "600")
+                {
+                    document.getElementById("navMiniMenu").style.visibility = "hidden";
+                    dropDownVisible = true;
+                }
+            });
+        </script>
 	</head>
 	
 	<body>
