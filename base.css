@@ -28,10 +28,12 @@ z-index: 1;
     visibility: hidden;
     float:right;
 }
-@media only screen and (max-width:600px)
+@media only screen and (max-width:1000px)
 {
     .navButtons button
     {
+        width: 0;
+        height:0;
         visibility: hidden;
     }
     #navMiniButtonIcon
@@ -42,9 +44,12 @@ z-index: 1;
 .navButtons button
 {
     background:transparent;
+    height:30px;
+    display:inline-block;
     border-radius:10px;
     border: transparent;
     color:white;
+    z-index: 1;
 }
 .navButtons button:hover
 {

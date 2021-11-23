@@ -27,7 +27,7 @@
             $(window).resize(function()
             {
                 console.log("drop down icon has changed");
-                if(window.innerWidth >= "600")
+                if(window.innerWidth >= "1000")
                 {
                     document.getElementById("navMiniMenu").style.visibility = "hidden";
                     dropDownVisible = true;
@@ -49,6 +49,7 @@
                     <!--Navigation buttons-->
                     <button type = "button"  onclick = "goToLinkInPage(0)">Home</button>
                     <button type = "button"  onclick = "goToLinkInPage(1)">Contact</button>
+                    <button type = "button"  onclick = "goToLinkInPage(3)">Vacation Packages</button>
                     <button type = "button"  style ="background-color: royalblue" onclick = "goToLinkInPage(2)">Sign In</button>
 
                     <!--If the screen width is too small, the buttons will an icon to later display those buttons in a dropdown menu-->
@@ -61,6 +62,7 @@
             <div class = "container-fluid bg-white" id= "navMiniMenu">
                 <button type = "button"  onclick = "goToLinkInPage(0)">Home</button></br>
                 <button type = "button"  onclick = "goToLinkInPage(1)">Contact</button></br>
+                <button type = "button"  onclick = "goToLinkInPage(3)">Vacation Packages</button>
                 <button type = "button"  style ="background-color: royalblue" onclick = "goToLinkInPage(2)">Sign In</button>
             </div>
         </header>		

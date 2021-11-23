@@ -1,4 +1,4 @@
-var links = ["http://localhost:8000/main.html", "http://localhost:8000/Contact.html", "http://localhost:8000/Registration.html"];
+var links = ["http://localhost:8000/main.html", "http://localhost:8000/Contact.html", "http://localhost:8000/Registration.html","http://localhost:8000/VacationPackages.html"];
 var dropDownImages = ["img/DropDownIcon.svg","img/DropDownIconHovered.svg"];
 var dropDownVisible = true;
 
@@ -17,7 +17,7 @@ function changeDropDownIcon(index)
 function displayDropDown()
 {
     //Opens the drop down menu.
-    if(dropDownVisible == true && window.innerWidth <= 600)
+    if(dropDownVisible == true && window.innerWidth <= 1000)
     {
         document.getElementById("navMiniMenu").style.visibility = "visible";
         dropDownVisible = false;
