@@ -1,0 +1,14 @@
+<script>
+    //reads when the window is resizing
+    $(window).resize(function()
+    {
+        console.log("drop down icon has changed");
+
+        //Hides the drop down navigation menu if the window width is greater than or equal to 1000px.
+        if(window.innerWidth >= "1000")
+        {
+            document.getElementById("navMiniMenu").style.visibility = "hidden";
+            dropDownVisible = true;
+        }
+    });
+</script>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head> 
-		<title> Travel Experts Registration</title> <!--- Title of the page --->
+		<title> Travel Experts SignIn</title> <!--- Title of the page --->
 		
 		<meta charset = "UTF-8"> </meta> <!--- Converts ASCII to UTF-8 so it covers almost all characters and symbols in the world --->
 		<meta name = "description" content = "Travel at the best price"></meta> <!--- Displays a short description when searched --->
@@ -23,24 +23,12 @@
         <!--Links for nav bar-->
         <script src = "navLinks.js"></script>
 
-        <script>
-            $(window).resize(function()
-            {
-                console.log("drop down icon has changed");
-                if(window.innerWidth >= "1000")
-                {
-                    document.getElementById("navMiniMenu").style.visibility = "hidden";
-                    dropDownVisible = true;
-                }
-            });
-        </script>
+        <!--Calls whenWindowResizes.ejs to write a script that reads when the window is resized-->
+        <%-include("whenWindowResizes.ejs")%> 
 	</head>
 	
 	<body>
-        <!--Header that contains the logo and the navigation buttons that lead to other pages in the website
-            uses: navLinks.js.goToLinkPage(index) function line 4.
-            uses: navLinks.js.changeDropDownIcon function line 8.
-            uses: navLinks.js.changeDropDownIcon function line 13.-->  
+        <!--Calls header.ejs to write html to display the header and the navigation bar-->  
         <header class = "container-fluid">
             <%-include("header.ejs")%>
         </header>		

@@ -23,17 +23,8 @@
         <!--Links for nav bar-->
         <script src = "navLinks.js"></script>
 
-        <script>
-            $(window).resize(function()
-            {
-                console.log("drop down icon has changed");
-                if(window.innerWidth >= "600")
-                {
-                    document.getElementById("navMiniMenu").style.visibility = "hidden";
-                    dropDownVisible = true;
-                }
-            });
-        </script>
+        <!--Calls whenWindowResizes.ejs to write a script that reads when the window is resized-->
+        <%-include("whenWindowResizes.ejs")%> 
         <style>
             select
             {
@@ -68,10 +59,7 @@
 	</head>
 	
 	<body>
-        <!--Header that contains the logo and the navigation buttons that lead to other pages in the website
-            uses: navLinks.js.goToLinkPage(index) function line 4.
-            uses: navLinks.js.changeDropDownIcon function line 8.
-            uses: navLinks.js.changeDropDownIcon function line 13.-->  
+        <!--Calls header.ejs to write html to display the header and the navigation bar-->  
         <header class = "container-fluid">
             <%-include("header.ejs")%>
         </header>		
