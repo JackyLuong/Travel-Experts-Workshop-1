@@ -1,0 +1,27 @@
+<!--Header that contains the logo and the navigation buttons that lead to other pages in the website
+    uses: navLinks.js.goToLinkPage(index) function line 4.
+    uses: navLinks.js.changeDropDownIcon function line 8.
+    uses: navLinks.js.changeDropDownIcon function line 13.-->  
+    <div class = "container">
+        <!--logo-->
+        <img id = "logo" src = "TravelExpertslogo.svg"></img>
+        <div class = "navButtons">
+            <!--Navigation buttons-->
+            <button type = "button"  onclick = "goToLinkInPage(0)">Home</button>
+            <button type = "button"  onclick = "goToLinkInPage(1)">Contact</button>
+            <button type = "button"  onclick = "goToLinkInPage(3)">Vacation Packages</button>
+            <button type = "button"  style ="background-color: royalblue" onclick = "goToLinkInPage(2)">Sign In</button>
+
+            <!--If the screen width is too small, the buttons will an icon to later display those buttons in a dropdown menu-->
+            <img id = "navMiniButtonIcon" src = "DropDownIcon.svg" onmouseover="changeDropDownIcon(1);" onmouseout="changeDropDownIcon(0)"
+                onclick = "displayDropDown();"></img>
+        </div>
+    </div>
+    
+    <!--Drop down menu-->
+    <div class = "container-fluid bg-white" id= "navMiniMenu">
+        <button type = "button"  onclick = "goToLinkInPage(0)">Home</button></br>
+        <button type = "button"  onclick = "goToLinkInPage(1)">Contact</button></br>
+        <button type = "button"  onclick = "goToLinkInPage(3)">Vacation Packages</button>
+        <button type = "button"  style ="background-color: royalblue" onclick = "goToLinkInPage(2)">Sign In</button>
+    </div>
