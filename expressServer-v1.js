@@ -19,9 +19,9 @@ app.use("/Contact",(req,res)=>
 });
 
 //Serves SignIn page if the url extension is "/SignIn."
-app.use("/SignIn",(req,res)=>
+app.use("/SignUp",(req,res)=>
 {
-    res.render("SignIn.ejs");
+    res.render("SignUp.ejs");
 });
 
 //Serves VacationPackages page if the url extension is "/Vacation_Packages."
@@ -34,6 +34,12 @@ app.use("/Vacation_Packages",(req,res) =>
  app.use("/Home",(req,res) =>
 {
     res.render("main.ejs");
+});
+
+app.post("/SignUpDone",(req,res)=>
+{
+    
+    res.render("thanks.ejs");
 });
 
 //Serves 404Error page if the server can't find the page that is being request.
