@@ -1,18 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+/* Style for header*/
 header
 {
     background-color: #101425;
     float:left;
 }
+/* Style for body*/
 body
 {
     font-family: 'Lato', sans-serif;
 }
+/* Style for footer*/
 footer
 {
 position:relative;
 bottom:0px;
 }
+/* Posiitons for navigation buttons when the screen width is greater than or equal to 1000px*/
 .navButtons
 {
     float: right;
@@ -20,6 +24,8 @@ bottom:0px;
     margin-bottom: 15px;
     font-family: 'Lato', sans-serif;
 }
+
+/* Style for 3 line icon when the screen width is less than 1000px*/
 #navMiniButtonIcon
 {
     position:relative;
@@ -28,19 +34,23 @@ bottom:0px;
     visibility: hidden;
     float:right;
 }
+/* Style when screen is less than 1000px*/
 @media only screen and (max-width:1000px)
 {
+    /* Style for navigation buttons*/
     .navButtons button
     {
         width: 0;
         height:0;
         visibility: hidden;
     }
+    /* Displays 3 line icon*/
     #navMiniButtonIcon
     {
         visibility: visible;
     }
 }
+/* Style for navigation buttons when the screen width is greater than or equal to 1000px*/
 .navButtons button
 {
     background:transparent;
@@ -51,14 +61,13 @@ bottom:0px;
     color:white;
     z-index: 1;
 }
+/* Changes navigation button texts when moused over*/
 .navButtons button:hover
 {
     color:#FDAF2F;
 }
-#menuButton
-{
-    color:#FDAF2F; 
-}
+
+/* Posiitons for navigation Menu and hides it on default*/
 #navMiniMenu
 {
     position: absolute;
@@ -67,6 +76,7 @@ bottom:0px;
     height:100%;
     visibility: hidden;
 }
+/* Style for navigation Menu buttons*/
 #navMiniMenu button
 {
     border-radius: 10px;
@@ -79,6 +89,7 @@ bottom:0px;
     height: 60px;
     width:100%
 }
+/* Style Logo*/
 #logo
 {
     width: 200px;
