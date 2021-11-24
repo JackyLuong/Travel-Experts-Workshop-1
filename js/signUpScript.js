@@ -1,5 +1,6 @@
 
 var errorMessage = "";
+var passwordShowing = false;
 
 /* Checks the text field and checks if the field only has letter.
     There are other characters aside from letters, it'll reset the field
@@ -81,6 +82,7 @@ function validate()
     if(inputsFilled == inputs.length)
     {
         document.getElementById("submitButton").disabled = false;
+
     }
     else
     {
@@ -88,4 +90,34 @@ function validate()
     }
     console.log(inputsFilled);
     inputsFilled = 0;
+}
+
+function showPassReqirements(boolean)
+{
+    if(boolean == true)
+    {
+        document.getElementById("passRequirements").style.visibility = "visible";
+        document.getElementById("passRequirements").style.height = "auto";
+    } 
+    else
+    {
+        document.getElementById("passRequirements").style.visibility = "hidden";
+        document.getElementById("passRequirements").style.height = "0px";
+    }
+}
+
+function showPass()
+{
+    if(passwordShowing == false)
+    {
+        document.getElementById("pword").type = "text";
+        document.getElementById("passIcon").className = "fa fa-eye icon"
+        passwordShowing = true;
+    }
+    else
+    {
+        document.getElementById("pword").type = "password";
+        document.getElementById("passIcon").className = "fa fa-eye-slash icon"
+        passwordShowing = false;
+    }
 }

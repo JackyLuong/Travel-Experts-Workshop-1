@@ -26,6 +26,9 @@
         <!--Script for SignUp Page-->
         <script src="signUpScript.js"></script>
 
+        <!--Fontawesom icons-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+
         <style>
             #SignUpForm
             {
@@ -51,11 +54,24 @@
                 height:40px;
                 margin-bottom: 20px;
                 color:#1f2a5a;
-                
+            }
+            #pass
+            {
+                margin-left: 20px;
             }
             #message
             {
                 color:red;
+            }
+            #passRequirements
+            {
+                text-align: left;
+                border-radius: 10px;
+                border: 1px solid #1f2a5a;
+                background-color:#F3F3F3;
+                width: 300px;
+                visibility: hidden;
+                height:0px;
             }
         </style>
 
@@ -80,7 +96,9 @@
                         uses: signUpScript.js.checkTextBox() function line 7
                         uses: signUpScript.js.userConfirm() function line 28
                         uses: signUpScript.js.validate() function line 66
-                        uses: signUpScript.js.userConfirm() function line 50 -->
+                        uses: signUpScript.js.userConfirm() function line 50
+                        uses: signUpScript.js.showPassRequirements() function line 94
+                        uses: signUpScript.js.showPassRequirements() function line 109-->
                 <input type ="text" maxLength = "1000" name = "First name"  id = "fName" placeholder = "First name" onchange = "checkTextBox(this.id);"></input>
                 <br/>
                 <!--- textbox for user to type their name, max length is 1000 and user has to to type something in before submitting --->
@@ -89,6 +107,20 @@
                 <!--- textbox for user to type their email, user has to to type something in before submitting and have an @ sign--->
                 <input type ="email" name = "Email" required = "required" id = "emailId" placeholder = "Email" onchange = "validate();"></input>
                 <br/>
+                <!--- user can create a password that 6-16 charcters and needs at least one number and one special character--->
+                <div class = "input-icons" id = pass>
+                    <input type ="password" class="input-field" pattern ="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$" name = "Password" id = "pword" 
+                    placeholder = "Password" onchange = "validate();" onfocus="showPassReqirements(true);" onfocusout="showPassReqirements(false);"></input>
+                    <i class="fa fa-eye-slash icon" id="passIcon" onclick = "showPass();"></i>
+                </div>
+                 <div class = "container" id = "passRequirements">
+                    <ul>
+                        <li>Must be 6-16 characters long</li>
+                        <li>At least one number</li> 
+                        <li>At least one special character ie: $%^</li>
+                    </ul>
+                </div>
+                 <br/>
                 <!--- textbox for user to type their phone, has to follow the pattern--->
                 <input type ="tel" id = phoneId name = "userPhone" placeholder = "Phone example:403-222-3333" onchange = "checkPhone(this.id)"></input>
                 <br/>
