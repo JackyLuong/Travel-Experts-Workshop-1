@@ -3,9 +3,8 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 //Reads and serves static svg,png,jpg images to be used.
 app.use(express.static("img",{"extentions": ["svg","png","jpg"]}));
-//Reads and serves static html, and css to be used.
-app.use(express.static("views",{"extensions":["html","css"]}));
-//Reads and serves jQuery, scripts and the server to be used.
+//Reads and serves css files to be used.
+app.use(express.static("css",{"extentions": ["css"]}));
 app.use(express.static("js",{"extensions":["js"]}));
 //Displays webage in port 8000.
 app.listen(8000,() => {console.log("Server Running on port 8000.")});
@@ -33,7 +32,7 @@ app.use("/Vacation_Packages",(req,res) =>
 //Serves Home page if the url extension is "/Home."
  app.use("/Home",(req,res) =>
 {
-    res.render("main.ejs");
+    res.render("main");
 });
 
 app.post("/SignUpDone",(req,res)=>

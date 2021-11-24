@@ -2,16 +2,16 @@
 <html>
 	<head> 
         <!--Calls head.ejs to write a script that changes the title and imports all the basic js,css, and logos for the page-->
-        <%-include("head.ejs", {name:"Thank You For Signing Up"})%> 
+        <%-include("ejsSub/head.ejs", {name:"Thank You For Signing Up"})%> 
 
         <!--Calls whenWindowResizes.ejs to write a script that reads when the window is resized-->
-        <%-include("whenWindowResizes.ejs")%> 
+        <%-include("ejsSub/whenWindowResizes.ejs")%> 
 	</head>
 	
 	<body>
         <!--Calls header.ejs to write html to display the header and the navigation bar-->  
         <header class = "container-fluid">
-            <%-include("header.ejs")%>
+            <%-include("ejsSub/header.ejs")%>
         </header>		
         <br/>
 
@@ -22,7 +22,7 @@
 
         <!--Footer-->
         <footer class = "container">
-            <%-include("footer.ejs")%>
+            <%-include("ejsSub/footer.ejs")%>
         </footer>
 	</body>
 </html>
