@@ -5,29 +5,29 @@
         <%-include("ejsSub/head.ejs", {name:"Sign Up"})%> 
 
         <!--Script for SignUp Page-->
+        <script src="require.js"></script>
+
+        <!--Script for SignUp Page-->
         <script src="signUpScript.js"></script>
 
         <!--Fontawesom icons-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        
+        <!--Dumps user data into a string and converts it into a JSON file to be used in javascript-->
+        <script>
+            var userJsonDump = '<%-JSON.stringify(userProfiles)%>';
+            var userArray = JSON.parse(userJsonDump);
+        </script>
 
         <style>
-            #SignUpForm
-            {
-                position: relative;
-                top:50px;
-                border: 1px solid #1f2a5a;
-                background-color: #F3F3F3 ;
-                border-radius: 10px;
-                padding-top: 2%;
-                padding-bottom: 2%;
-                height:90%;
-                z-index: 1;
-            }
+            /*Style for entire form*/
             form
             {
                 margin-top: 30px;
             }
-            input
+
+            /*Style for entire input tag and a button for the user to select what country they are from*/
+            input, #selectedCountry
             {
                 border-radius: 10px;
                 border: 2px solid #1f2a5a;
@@ -36,14 +36,20 @@
                 margin-bottom: 20px;
                 color:#1f2a5a;
             }
+
+            /*Style password*/
             #pass
             {
                 margin-left: 20px;
             }
+
+            /*Style for error message*/
             #message
             {
                 color:red;
             }
+
+            /*Style for password requirement*/
             #passRequirements
             {
                 text-align: left;
@@ -53,6 +59,48 @@
                 width: 300px;
                 visibility: hidden;
                 height:0px;
+            }
+
+            /*Style for the dropdown that displays each country in the world*/
+            #countryDropDown
+            {
+                text-align: left;
+                position:relative;
+                display:none;
+                width:300px;
+                overflow:auto;
+                z-index:2px;
+                max-height: 300px;
+            }
+
+            /*Style scrollbar*/
+            ::-webkit-scrollbar
+            {
+                width: 10px;
+            }
+
+            /*Style scrollbar thumb*/
+            ::-webkit-scrollbar-thumb
+            {
+                background: #D3D3D3;
+                border-radius: 10px;
+            }
+
+            /*Style search field for the country drop down menu*/
+            #countryId
+            {
+                width:280px;
+                display: "block";
+                border: 2px solid #EAEAEA;
+                border-radius: 0px;
+            }
+
+            /*Style password*/
+            #selectedCountry
+            {
+                text-align: left;
+                background-color: white;
+                color: #6D6D6D;
             }
         </style>
 
@@ -74,25 +122,31 @@
             <p id= "message"></p>
             <form method = "post" action = "/SignUpDone" class = "container-fluid" id= "form">
                 <!-- textbox for user to type their name, max length is 1000 and user has to to type something in before submitting
-                        uses: signUpScript.js.checkTextBox() function line 7
-                        uses: signUpScript.js.userConfirm() function line 28
-                        uses: signUpScript.js.validate() function line 66
-                        uses: signUpScript.js.userConfirm() function line 50
-                        uses: signUpScript.js.showPassRequirements() function line 94
-                        uses: signUpScript.js.showPassRequirements() function line 109-->
-                <input type ="text" maxLength = "1000" name = "First name"  id = "fName" placeholder = "First name" onchange = "checkTextBox(this.id);"></input>
+                        uses: signUpScript.js.checkTextBox() function line 8
+                        uses: signUpScript.js.checkPhone() function line 33
+                        uses: signUpScript.js.checkPostal() function line 58
+                        uses: signUpScript.js.checkEmailUniquness() function line 81
+                        uses: signUpScript.js.validate() function line 114
+                        uses: signUpScript.js.showPassRequirements() function line 142
+                        uses: signUpScript.js.showPass() function line 159
+                        uses: signUpScript.js.showCountries() function line 176
+                        uses: signUpScript.js.setFromDropDownField() function line 189
+                        uses: signUpScript.js.filter() function line 198-->
+
+                <!--- textbox for user to type their first name--->
+                <input type ="text" maxLength = "1000" name = "FirstName"  id = "fNameId" placeholder = "First name" onchange = "checkTextBox(this.id);"></input>
                 <br/>
-                <!--- textbox for user to type their name, max length is 1000 and user has to to type something in before submitting --->
-                <input type ="text"  maxLength = "1000" name = "Last name" id = "lName" placeholder = "Last name" onchange = "checkTextBox(this.id);"></input>	
+                <!--- textbox for user to type their last name--->
+                <input type ="text"  maxLength = "1000" name = "LastName" id = "lNameId" placeholder = "Last name" onchange = "checkTextBox(this.id);"></input>	
                 <br/>
-                <!--- textbox for user to type their email, user has to to type something in before submitting and have an @ sign--->
-                <input type ="email" name = "Email" required = "required" id = "emailId" placeholder = "Email" onchange = "validate();"></input>
+                <!--- textbox for user to type their email--->
+                <input type ="email" name = "Email" id = "emailId" required = "required" placeholder = "Email" onchange = "checkEmailUniquness(this.id, userArray);"></input>
                 <br/>
                 <!--- user can create a password that 6-16 charcters and needs at least one number and one special character--->
                 <div class = "input-icons" id = pass>
-                    <input type ="password" class="input-field" pattern ="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$" name = "Password" id = "pword" 
-                    placeholder = "Password" onchange = "validate();" onfocus="showPassReqirements(true);" onfocusout="showPassReqirements(false);"></input>
-                    <i class="fa fa-eye-slash icon" id="passIcon" onclick = "showPass();"></i>
+                    <input type ="password" name = "Password" id = "pwordId" class = "input-field" placeholder = "Password" pattern = "^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$"
+                     onchange = "validate();" onfocus = "showPassReqirements(true);" onfocusout = "showPassReqirements(false);"></input>
+                    <i class = "fa fa-eye-slash icon" id ="passIcon" onclick = "showPass('pwordId');"></i>
                 </div>
                  <div class = "container" id = "passRequirements">
                     <ul>
@@ -101,15 +155,45 @@
                         <li>At least one special character ie: $%^</li>
                     </ul>
                 </div>
-                 <br/>
-                <!--- textbox for user to type their phone, has to follow the pattern--->
-                <input type ="tel" id = phoneId name = "userPhone" placeholder = "Phone example:403-222-3333" onchange = "checkPhone(this.id)"></input>
+                <br/>
+                <!--- textbox for business phone--->
+                <input type ="tel" name = "Phone" id = "phoneId" placeholder = "Phone example:403-222-3333" onchange = "checkPhone(this.id)"></input>
+                <br/>
+                <!--- textbox for user home phone--->
+                <input type ="tel" name = "HomePhone" id = "homePhoneId" placeholder = "Home Phone example:403-222-3333" onchange = "checkPhone(this.id)"></input>
+                <br/>
+                <!--textbox for street name-->
+                <input type ="text" name = "StreetName"  id = "sName" placeholder = "Street name" maxLength = "1000" onchange = "validate();"></input>
+                <br/>
+                <!--- search and dropdown for user's country--->
+                <div id= "dropDown">
+                    <button type = button id = "selectedCountry" onfocus = "showCountries(true)">Select a Country</button>
+                    <br/>
+                    <div id = countryDropDown class ="dropDownContent">
+                        <input type = "text" name = "CountryName" id = "countryId" placeholder = "Search..." onkeyup = "filter(this.id);"><br/>
+                        <% for (i = 0; i<countries.length; i++){ %>
+                            <a style = "display:block;" id = "country + <%=i%>" onclick = "setFromDropDownField(this)"><%=countries[i].name%></a>
+                        <% i++; } %> 
+                    </div>
+                </div>
+                <br/>
+                <!--- Label for user's province--->
+				<input type="text" name = "ProvinceName" id= "provinceId" placeholder = "Province" onchange = "validate();">
+                <br/>
+                <!--textbox for city-->
+                <input type ="text" name = "CityName"  id = "cNameId" placeholder = "City" maxLength = "1000" onchange = "validate();"></input>
+                <br/>
+                <!-- textbox for postal code-->
+				<input type = "text" name = "Postal" id = postalId placeholder = "Postal Code" onchange = "checkPostal('postalId');" >
+				<br/>
+                <!-- login page link-->
+                <a href = "/Login" id = "loginLink" class = "text-secondary">Login if you have an existing account.</a>
                 <br/>
                 <!--- Button used to submit data --->
-                <button type ="submit" class= "btn btn-dark white-text" name="Submit" disabled = "disabled" id = submitButton onclick = "validate();">Submit</button>
+                <button type = "submit" name = "Submit" id = submitButton class = "btn btn-dark white-text mt-5" disabled = "disabled" onclick = "validate();">Sign Up</button>
 
                 <!--- Button used to reset the fields -->
-                <button type ="reset" class = "btn btn-dark white-text" onclick = "return userConfirm();" id = "resetButton"> Reset</button>
+                <button type = "reset" id = "resetButton" class = "btn btn-dark white-text mt-5" onclick = "return confirm('Do you want to reset?');"> Reset</button>
             </form>
         </div>
 

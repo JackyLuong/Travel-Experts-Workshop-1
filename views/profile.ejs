@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <!--Calls head.ejs to write a script that changes the title and imports all the basic js,css, and logos for the page-->
+        <%-include("ejsSub/head.ejs", {name:"Travel Experts Profile"})%> 
+
+        <!--Calls whenWindowResizes.ejs to write a script that reads when the window is resized-->
+        <%-include("ejsSub/whenWindowResizes.ejs");%> 
+	</head>
+	
+	<body>
+        <!--Calls header.ejs to write html to display the header and the navigation bar-->  
+        <header class = "container-fluid">
+            <%-include("ejsSub/header.ejs");%>
+        </header>		
+        <br/>
+
+        <!--main container for content-->
+        <div class = "text-center">
+            <form method = "post" action = "/SignOut" class = "container-fluid" id= "form">
+                <!--- Button used to submit data --->
+                <button type ="submit" class= "btn btn-dark white-text mt-5" name="signOut" id = submitButton>SignOut</button>
+            </form>
+        </div>
+
+        <!--Footer-->
+        <footer class = "container">
+            <%-include("ejsSub/footer.ejs");%>
+        </footer>
+	</body>
+</html>

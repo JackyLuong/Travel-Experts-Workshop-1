@@ -1,10 +1,10 @@
-
 var errorMessage = "";
 var passwordShowing = false;
 
 /* Checks the text field and checks if the field only has letter.
     There are other characters aside from letters, it'll reset the field
-    and send out an error message.*/
+    and send out an error message.
+    Uses: errorMessage variable*/
 function checkTextBox(idName)
 {
     var textInBox= document.getElementById(idName).value;
@@ -28,7 +28,8 @@ function checkTextBox(idName)
 
 /* Checks the text field and checks if the field is in the right phone format is: 123-123-1234.
     There are other characters aside from letters, it'll reset the field
-    and send out an error message.*/
+    and send out an error message.
+    uses: error Message variable*/
 function checkPhone(idName)
 {
     var textInBox= document.getElementById(idName).value;
@@ -50,18 +51,59 @@ function checkPhone(idName)
     validate();
 }
 
-//extends the confirm function and disables all the input boxes if the user chooses to confirm and reset the text fields
-function userConfirm ()
+/* Checks the text field and checks of the field only has matches the postal code format.
+    There are other characters aside from letters, it'll reset the field
+    and send out an error message.
+    Uses: errorMessage variable*/
+function checkPostal(idName)
 {
-    var reseting = confirm("do you want to reset?");
-    if(reseting == true)
+    var textInBox= document.getElementById(idName).value;
+    console.log(textInBox);
+
+    if(textInBox.length > 0 && textInBox.match(/^[A-Z]\d[A-Z]\s?\d[A-Z]\d$/) && textInBox.length != null) 
     {
-        disableAll();
+        errorMessage = "";
+        document.getElementById("message").innerHTML = errorMessage;
+        validate();
     }
     else
     {
-        return reseting;
+        errorMessage = "Invalid " + document.getElementById(idName).name;
+        document.getElementById("message").innerHTML = errorMessage;
+        document.getElementById("message").focus();
+        return document.getElementById(idName).value = "";
     }
+    validate();
+}
+
+/* Compares the email that the customer has typed with all the emails in the database 
+    to ensure that each account only has one email attached to it.*/
+function checkEmailUniquness(idName, userArray)
+{
+    var currentEmail = document.getElementById(idName).value;
+    var emailMismatched = 0;
+    for(i = 0; i <userArray.length; i++)
+    {
+        if(userArray[i].custEmail != currentEmail)
+        {
+            emailMismatched ++;
+        }
+    }
+    if(emailMismatched == userArray.length)
+    {
+        errorMessage = "";
+        document.getElementById("message").innerHTML = errorMessage;
+        validate();
+    }
+    else
+    {
+        errorMessage = "This email is already used.";
+        document.getElementById("message").innerHTML = errorMessage;
+        document.getElementById("message").focus();
+        return document.getElementById(idName).value = "";
+    }
+    emailMismatched = 0;
+    validate();
 }
 
 /* Checks input fields to 
@@ -79,45 +121,119 @@ function validate()
             inputsFilled ++;
         }
     }
-    if(inputsFilled == inputs.length)
+    if(inputsFilled == inputs.length && 
+        document.getElementById("selectedCountry").innerHTML != "Select A Country")
     {
         document.getElementById("submitButton").disabled = false;
 
     }
     else
     {
+        console.log(inputsFilled);
         document.getElementById("submitButton").disabled = true;
     }
-    console.log(inputsFilled);
     inputsFilled = 0;
 }
 
+/* Shows and hides password requirments */
 function showPassReqirements(boolean)
 {
+    var passRequirements = document.getElementById("passRequirements");
     if(boolean == true)
     {
-        document.getElementById("passRequirements").style.visibility = "visible";
-        document.getElementById("passRequirements").style.height = "auto";
+        passRequirements.style.visibility = "visible";
+        passRequirements.style.height = "auto";
     } 
     else
     {
-        document.getElementById("passRequirements").style.visibility = "hidden";
-        document.getElementById("passRequirements").style.height = "0px";
+        passRequirements.style.visibility = "hidden";
+        passRequirements.style.height = "0px";
     }
 }
-
-function showPass()
+/* Converts input type password into input type text to show 
+    what the user typed as their password.
+    Uses: passwordShowing variable*/
+function showPass(passwordId)
 {
     if(passwordShowing == false)
     {
-        document.getElementById("pword").type = "text";
+        document.getElementById(passwordId).type = "text";
         document.getElementById("passIcon").className = "fa fa-eye icon"
         passwordShowing = true;
     }
     else
     {
-        document.getElementById("pword").type = "password";
+        document.getElementById(passwordId).type = "password";
         document.getElementById("passIcon").className = "fa fa-eye-slash icon"
         passwordShowing = false;
+    }
+}
+
+/* Shows drop down of all the countries in the world for the user to select*/
+function showCountries(boolean)
+{
+    if(boolean == true)
+    {
+        document.getElementById("countryDropDown").style.display = "inline-block"
+    }
+    else
+    {
+        document.getElementById("countryDropDown").style.display = "none"
+    }
+}
+
+/* Displays user selected country*/
+function setFromDropDownField(selectedItem)
+{
+    document.getElementById("selectedCountry").innerHTML = document.getElementById(selectedItem.id).innerHTML;
+    document.getElementById("countryId").value = document.getElementById(selectedItem.id).innerHTML;
+    document.getElementById("countryDropDown").style.display = "none"
+    validate();
+}
+
+/* Filters all the countries based on what the user typed in the search tool*/
+function filter(searchField)
+{
+    var input = document.getElementById(searchField);
+    var filter = input.value.toUpperCase();
+    var div = document.getElementById("countryDropDown");
+    var countries = div.getElementsByTagName("a");
+
+    for (i = 0; i< countries.length; i++)
+    {
+        var textValue = countries[i].textContent || countries[i].innerText;
+        if(textValue.toUpperCase().indexOf(filter) > -1)
+        {
+            countries[i].style.display = "block";
+        }
+        else
+        {
+            countries[i].style.display = "none";
+        }
+    }
+}
+
+function validateLogin(email, password, userArray)
+{
+    var currentEmail = document.getElementById(email).value;
+    var currentPassword = document.getElementById(password).value;
+    var noMatch  = 0;
+    for(i = 0; i <userArray.length; i++)
+    {
+        if(userArray[i].custEmail == currentEmail && userArray[i].custPassword == currentPassword)
+        {
+            document.getElementById("form").submit();
+            errorMessage = "";
+            document.getElementById("message").innerHTML = errorMessage;
+        }
+        else
+        {
+            noMatch ++;
+        }
+    }
+    if(noMatch == userArray.length)
+    {
+        errorMessage = "Incorrect email or password";
+        document.getElementById("message").innerHTML = errorMessage;
     }
 }

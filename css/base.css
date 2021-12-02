@@ -13,7 +13,7 @@ body
 /* Style for footer*/
 footer
 {
-position:absolute;
+position:realtive;
 bottom:0px;
 }
 /* Posiitons for navigation buttons when the screen width is greater than or equal to 1000px*/
