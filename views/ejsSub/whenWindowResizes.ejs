@@ -7,6 +7,14 @@
         //Hides the drop down navigation menu if the window width is greater than or equal to 1000px.
         if(window.innerWidth >= "1000")
         {
+            var allDiv = document.querySelectorAll("div");
+            for(i = 0; i<allDiv.length; i++)
+            {
+                if(allDiv[i].id != "navMiniMenu" && allDiv[i].id != "banner")
+                {
+                    allDiv[i].style.display = "";
+                }
+            }
             document.getElementById("navMiniMenu").style.visibility = "hidden";
             dropDownVisible = true;
         }

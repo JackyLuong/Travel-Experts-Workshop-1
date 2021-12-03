@@ -34,10 +34,10 @@ app.use("/SignUp",(req,res)=>
     mongo.connect(url, {useNewUrlParser:true, useUnifiedTopology:true}, (err, client)=>
     {
         if(err) throw err;
-        var countryDb = client.db("allCountries");
+        var countryDb = client.db("TravelExpertsDB");
         var countryCursor =  countryDb.collection("countries").find();
         
-        var userDb = client.db("customerDB");
+        var userDb = client.db("TravelExpertsDB");
         var userCursor =  userDb.collection("customers").find();
         
         countryCursor.forEach((doc,err)=>
@@ -66,10 +66,10 @@ app.use("/Login",(req,res)=>
     mongo.connect(url, {useNewUrlParser:true, useUnifiedTopology:true}, (err, client)=>
     {
         if(err) throw err;
-        var countryDb = client.db("allCountries");
+        var countryDb = client.db("TravelExpertsDB");
         var countryCursor =  countryDb.collection("countries").find();
         
-        var userDb = client.db("customerDB");
+        var userDb = client.db("TravelExpertsDB");
         var userCursor =  userDb.collection("customers").find();
         
         countryCursor.forEach((doc,err)=>
@@ -94,7 +94,25 @@ app.use("/Login",(req,res)=>
 //Serves VacationPackages page if the url extension is "/Vacation_Packages."
 app.use("/Vacation_Packages",(req,res) =>
 {
-    res.render("vacationPackages.ejs", {loggedIn: isLoggedIn});
+    var packageArray = new Array();
+    mongo.connect(url, {useNewUrlParser:true, useUnifiedTopology:true}, (err, client)=>
+    {
+        if(err) throw err;
+
+        var packagesDb = client.db("TravelExpertsDB");
+        var packageCursor =  packagesDb.collection("packages").find();
+        
+        packageCursor.forEach((doc,err)=>
+        {
+            if(err) throw err;
+            packageArray.push(doc);
+        }, ()=>
+            {
+                client.close();
+                console.log(packageArray[2]);
+                res.render("vacationPackages.ejs", {packages:packageArray, loggedIn:isLoggedIn});
+            });
+    });
 });
 
 //Serves Home page if the url extension is "/Home."
@@ -128,7 +146,7 @@ app.post("/SignUpDone",(req,res)=>
     mongo.connect(url,{useNewUrlParser:true, useUnifiedTopology:true}, (err, client)=>
     {
         if(err) throw err;
-        var db = client.db("customerDB");
+        var db = client.db("TravelExpertsDB");
         db.collection("customers").insertOne(newUser, (err,result) =>
         {
             if(err) throw err;

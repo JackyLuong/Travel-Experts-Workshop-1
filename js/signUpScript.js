@@ -1,5 +1,6 @@
 var errorMessage = "";
 var passwordShowing = false;
+var countryShowing = false;
 
 /* Checks the text field and checks if the field only has letter.
     There are other characters aside from letters, it'll reset the field
@@ -22,9 +23,9 @@ function checkTextBox(idName)
         document.getElementById("message").innerHTML = errorMessage;
         document.getElementById("message").focus();
         return document.getElementById(idName).value = "";
-    }
+    };
     validate();
-}
+};
 
 /* Checks the text field and checks if the field is in the right phone format is: 123-123-1234.
     There are other characters aside from letters, it'll reset the field
@@ -47,9 +48,9 @@ function checkPhone(idName)
         document.getElementById("message").innerHTML = errorMessage;
         document.getElementById("message").focus();
         return document.getElementById(idName).value = "";
-    }
+    };
     validate();
-}
+};
 
 /* Checks the text field and checks of the field only has matches the postal code format.
     There are other characters aside from letters, it'll reset the field
@@ -72,9 +73,9 @@ function checkPostal(idName)
         document.getElementById("message").innerHTML = errorMessage;
         document.getElementById("message").focus();
         return document.getElementById(idName).value = "";
-    }
+    };
     validate();
-}
+};
 
 /* Compares the email that the customer has typed with all the emails in the database 
     to ensure that each account only has one email attached to it.*/
@@ -87,8 +88,8 @@ function checkEmailUniquness(idName, userArray)
         if(userArray[i].custEmail != currentEmail)
         {
             emailMismatched ++;
-        }
-    }
+        };
+    };
     if(emailMismatched == userArray.length)
     {
         errorMessage = "";
@@ -101,10 +102,10 @@ function checkEmailUniquness(idName, userArray)
         document.getElementById("message").innerHTML = errorMessage;
         document.getElementById("message").focus();
         return document.getElementById(idName).value = "";
-    }
+    };
     emailMismatched = 0;
     validate();
-}
+};
 
 /* Checks input fields to 
     ensure that they are filled out.
@@ -119,8 +120,8 @@ function validate()
         if(inputs[i].value != null && inputs[i].value != "")
         {
             inputsFilled ++;
-        }
-    }
+        };
+    };
     if(inputsFilled == inputs.length && 
         document.getElementById("selectedCountry").innerHTML != "Select A Country")
     {
@@ -131,9 +132,9 @@ function validate()
     {
         console.log(inputsFilled);
         document.getElementById("submitButton").disabled = true;
-    }
+    };
     inputsFilled = 0;
-}
+};
 
 /* Shows and hides password requirments */
 function showPassReqirements(boolean)
@@ -148,8 +149,8 @@ function showPassReqirements(boolean)
     {
         passRequirements.style.visibility = "hidden";
         passRequirements.style.height = "0px";
-    }
-}
+    };
+};
 /* Converts input type password into input type text to show 
     what the user typed as their password.
     Uses: passwordShowing variable*/
@@ -166,21 +167,24 @@ function showPass(passwordId)
         document.getElementById(passwordId).type = "password";
         document.getElementById("passIcon").className = "fa fa-eye-slash icon"
         passwordShowing = false;
-    }
-}
+    };
+};
 
 /* Shows drop down of all the countries in the world for the user to select*/
-function showCountries(boolean)
+function showCountries()
 {
-    if(boolean == true)
+    if(countryShowing == false)
     {
+        document.getElementById("selectedCountry").style.margin = "0px";
         document.getElementById("countryDropDown").style.display = "inline-block"
+        countryShowing = true;
     }
     else
     {
         document.getElementById("countryDropDown").style.display = "none"
-    }
-}
+        countryShowing = false;
+    };
+};
 
 /* Displays user selected country*/
 function setFromDropDownField(selectedItem)
@@ -188,8 +192,9 @@ function setFromDropDownField(selectedItem)
     document.getElementById("selectedCountry").innerHTML = document.getElementById(selectedItem.id).innerHTML;
     document.getElementById("countryId").value = document.getElementById(selectedItem.id).innerHTML;
     document.getElementById("countryDropDown").style.display = "none"
+    countryShowing = false;
     validate();
-}
+};
 
 /* Filters all the countries based on what the user typed in the search tool*/
 function filter(searchField)
@@ -209,10 +214,13 @@ function filter(searchField)
         else
         {
             countries[i].style.display = "none";
-        }
-    }
-}
+        };
+    };
+};
 
+/* Checks the email and password the user typed and compare it to the account that were store in the database
+    It'll let the login if their information matches any user, otherwise they it'll display an error telling them
+    their email or password is wrong.*/
 function validateLogin(email, password, userArray)
 {
     var currentEmail = document.getElementById(email).value;
@@ -229,11 +237,11 @@ function validateLogin(email, password, userArray)
         else
         {
             noMatch ++;
-        }
-    }
+        };
+    };
     if(noMatch == userArray.length)
     {
         errorMessage = "Incorrect email or password";
         document.getElementById("message").innerHTML = errorMessage;
-    }
-}
+    };
+};

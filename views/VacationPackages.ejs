@@ -6,35 +6,89 @@
 
         <!--Calls whenWindowResizes.ejs to write a script that reads when the window is resized-->
         <%-include("ejsSub/whenWindowResizes.ejs")%> 
+
+        <script src = "vacationPackageScript.js"></script>
+
         <style>
-            select
-            {
-                border-radius: 10px;
-                border: 2px solid #1f2a5a;
-                width: 50%;
-                height:40px;
-                color:#1f2a5a;
-                
-            }
+            /*Style for entire input tag and a button for the user to select what country they are from*/
             input
             {
                 border-radius: 10px;
                 border: 2px solid #1f2a5a;
-                width: 20%;
+                width: 300px;
                 height:40px;
                 color:#1f2a5a;
-                
+            }
+
+            /*Style scrollbar*/
+            ::-webkit-scrollbar
+            {
+                width: 10px;
+            }
+
+            /*Style scrollbar thumb*/
+            ::-webkit-scrollbar-thumb
+            {
+                background: #D3D3D3;
+                border-radius: 10px;
             }
             #vacationForm
             {
-                position: relative;
-                top:50px;
+                margin-top: 5%;
+                padding-top: 20px;
+                padding-bottom: 20px;
                 border: 1px solid #1f2a5a;
                 background-color: #F3F3F3 ;
                 border-radius: 10px;
-                padding-top: 2%;
-                padding-bottom: 2%;
-                z-index: 1;
+            }
+            #containers
+            {
+                margin-top: 5%;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                border: 1px solid #1f2a5a;
+                background-color: white;
+                border-radius: 10px;
+                width: 60%;
+                height:auto
+            }
+            #searchPackageButton
+            {
+                background-color: royalblue;
+                color: white;
+                border-radius: 10px;
+                border: transparent;
+                margin-left: 50px;
+                width: 100px;
+                height:40px;
+            }
+            #packageTitle
+            {
+                color:#183173 ;
+                font-size: 36px;
+            }
+            h2#packageStrtEndDates
+            {
+                margin-bottom: -5px;
+                font-size: 16px;
+            }
+            p#packageDesc
+            {
+                font-size: 20px;
+                max-width: 800px;
+            }
+            #packagePrice
+            {
+                text-align: right;
+                font-size: 22px;
+            }
+            /* Style when screen is less than 1000px*/
+            @media only screen and (max-width:1000px)
+            {
+                #searchPackageButton
+                {
+                    margin-left: 0px;
+                }
             }
         </style>
 	</head>
@@ -47,23 +101,30 @@
         <br/>
 
         <!--main container for content-->
-        <div class = "text-center">
-            <div class = "container" id = "vacationForm">
-                <form method = "get">
-                    <select name = "Destination";>
-                        <option value = "N/A">Select a country</option>
-                        <option value = "1">Calgary</option>
-                        <option value = "2">Edmonton</option>
-                        <option value = "3">Vancover</option>
-                    </select>
-                    <input type = "date" name = "deparDate"></input> <!--- Creates date droplist for user to select a date --->	
-                    <input type = "date" name = "arriveDate"></input> <!--- Creates date droplist for user to select a date --->	
-                </form>
-            </div>
+        <div class = "container text-center" id = "vacationForm">
+            <form class = "container">
+                <input type = "text" name = "searchPackageName" id  = "searchId" placeholder="Search Package Name"></input>
+                <input type = "date" name = "startDate" id  = "strDateId"></input> <!--- Creates date droplist for user to select a date --->	
+                <input type = "date" name = "endDate" id  = "endDateId"></input> <!--- Creates date droplist for user to select a date --->
+                <button type = "button" id = "searchPackageButton" onclick = "filter('searchId','strDateId','endDateId', 'packages');">Search</button>
+            </form>
+        </div>
+        <div id = "packages">
+            <% for (i = 0; i < packages.length; i++){ %>
+                <div class = "container" id = "containers" >
+                    <h1 id = "packageTitle"><%=packages[i].PkgName%></a>
+                    <br/>
+                    <h2 id="packageStrtEndDates"><%=packages[i].PkgStartDate%> - <%=packages[i].PkgEndDate%></h2>
+                    <br/>
+                    <p id = "packageDesc"><%=packages[i].PkgDesc%></p>
+                    <br/>
+                    <p id = "packagePrice">Base Price: $<%=packages[i].PkgBasePrice%></p>
+                </div>
+            <%} %>
         </div>
 
         <!--Footer-->
-        <footer class = "container">
+        <footer>
             <%-include("ejsSub/footer.ejs")%>
         </footer>
 	</body>

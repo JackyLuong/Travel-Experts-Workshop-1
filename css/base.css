@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 /* Style for header*/
+html
+{
+    height:100%;
+}
 header
 {
     background-color: #101425;
@@ -8,13 +12,14 @@ header
 /* Style for body*/
 body
 {
+    height:100%;
     font-family: 'Lato', sans-serif;
 }
 /* Style for footer*/
 footer
 {
-position:realtive;
 bottom:0px;
+z-index: 1px;
 }
 /* Posiitons for navigation buttons when the screen width is greater than or equal to 1000px*/
 .navButtons
@@ -40,7 +45,7 @@ bottom:0px;
     /* Style for navigation buttons*/
     .navButtons button
     {
-        width: 0;
+        width:0;
         height:0;
         visibility: hidden;
     }
@@ -87,7 +92,8 @@ bottom:0px;
     position:relative;
     margin-bottom: 50px;
     height: 60px;
-    width:100%
+    width:100%;
+    z-index: 2px;
 }
 /* Style Logo*/
 #logo

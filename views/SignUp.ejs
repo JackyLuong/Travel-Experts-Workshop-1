@@ -12,97 +12,14 @@
 
         <!--Fontawesom icons-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+
+        <link rel="stylesheet" type = "text/css" href="signUpPage.css"></link>
         
         <!--Dumps user data into a string and converts it into a JSON file to be used in javascript-->
         <script>
             var userJsonDump = '<%-JSON.stringify(userProfiles)%>';
             var userArray = JSON.parse(userJsonDump);
         </script>
-
-        <style>
-            /*Style for entire form*/
-            form
-            {
-                margin-top: 30px;
-            }
-
-            /*Style for entire input tag and a button for the user to select what country they are from*/
-            input, #selectedCountry
-            {
-                border-radius: 10px;
-                border: 2px solid #1f2a5a;
-                width: 300px;
-                height:40px;
-                margin-bottom: 20px;
-                color:#1f2a5a;
-            }
-
-            /*Style password*/
-            #pass
-            {
-                margin-left: 20px;
-            }
-
-            /*Style for error message*/
-            #message
-            {
-                color:red;
-            }
-
-            /*Style for password requirement*/
-            #passRequirements
-            {
-                text-align: left;
-                border-radius: 10px;
-                border: 1px solid #1f2a5a;
-                background-color:#F3F3F3;
-                width: 300px;
-                visibility: hidden;
-                height:0px;
-            }
-
-            /*Style for the dropdown that displays each country in the world*/
-            #countryDropDown
-            {
-                text-align: left;
-                position:relative;
-                display:none;
-                width:300px;
-                overflow:auto;
-                z-index:2px;
-                max-height: 300px;
-            }
-
-            /*Style scrollbar*/
-            ::-webkit-scrollbar
-            {
-                width: 10px;
-            }
-
-            /*Style scrollbar thumb*/
-            ::-webkit-scrollbar-thumb
-            {
-                background: #D3D3D3;
-                border-radius: 10px;
-            }
-
-            /*Style search field for the country drop down menu*/
-            #countryId
-            {
-                width:280px;
-                display: "block";
-                border: 2px solid #EAEAEA;
-                border-radius: 0px;
-            }
-
-            /*Style password*/
-            #selectedCountry
-            {
-                text-align: left;
-                background-color: white;
-                color: #6D6D6D;
-            }
-        </style>
 
         <!--Calls whenWindowResizes.ejs to write a script that reads when the window is resized-->
         <%-include("ejsSub/whenWindowResizes.ejs")%> 
@@ -167,12 +84,12 @@
                 <br/>
                 <!--- search and dropdown for user's country--->
                 <div id= "dropDown">
-                    <button type = button id = "selectedCountry" onfocus = "showCountries(true)">Select a Country</button>
+                    <button type = button id = "selectedCountry" onclick = "showCountries()">Select a Country</button>
                     <br/>
                     <div id = countryDropDown class ="dropDownContent">
                         <input type = "text" name = "CountryName" id = "countryId" placeholder = "Search..." onkeyup = "filter(this.id);"><br/>
                         <% for (i = 0; i<countries.length; i++){ %>
-                            <a style = "display:block;" id = "country + <%=i%>" onclick = "setFromDropDownField(this)"><%=countries[i].name%></a>
+                            <a style = "display:block; cursor:pointer" id = "country + <%=i%>" onclick = "setFromDropDownField(this)"><%=countries[i].name%></a>
                         <% i++; } %> 
                     </div>
                 </div>
