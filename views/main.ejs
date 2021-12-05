@@ -1,28 +1,200 @@
 <!DOCTYPE html>
 <html>
-	<head>
+	<head> 
         <!--Calls head.ejs to write a script that changes the title and imports all the basic js,css, and logos for the page-->
         <%-include("ejsSub/head.ejs", {name:"Travel Experts Home"})%> 
 
         <!--Calls whenWindowResizes.ejs to write a script that reads when the window is resized-->
-        <%-include("ejsSub/whenWindowResizes.ejs");%> 
+        <%-include("ejsSub/whenWindowResizes.ejs")%> 
+
+        <script src = "vacationPackageScript.js"></script>
+        <script>
+            var adPackageImages = new Array();
+			for(i = 0; i <3; i++)
+			{
+				adPackageImages[i] = new Image();
+				adPackageImages[i].src = ("adPackageImg" + i + ".jpg");
+			};
+            $(document).ready(()=>
+            {
+                for(i = 0; i <3; i++)
+                {
+                    var ad = document.getElementById("adPackage " + i);
+                    ad.src = adPackageImages[i].src
+                };
+            });
+        </script>
+
+        <style>
+            /*Style for entire input tag and a button for the user to select what country they are from*/
+            input
+            {
+                border-radius: 10px;
+                border: 2px solid #1f2a5a;
+                width: 300px;
+                height:40px;
+                color:#1f2a5a;
+            }
+
+            /*Style scrollbar*/
+            ::-webkit-scrollbar
+            {
+                width: 10px;
+            }
+
+            /*Style scrollbar thumb*/
+            ::-webkit-scrollbar-thumb
+            {
+                background: #D3D3D3;
+                border-radius: 10px;
+            }
+            .popularPackages
+            {
+                float: left;
+                width: 33.33%;
+                padding: 5px;
+            }
+
+            .row::after 
+            {
+                content: "";
+                clear: both;
+                display: table;
+            }
+
+            .adImages
+            {
+                border-radius: 10px;
+                width: 90%;
+                height:auto;
+            }
+            #vacationForm
+            {
+                margin-top: 5%;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                border: 1px solid #1f2a5a;
+                background-color: white;
+                border-radius: 10px;
+                width: 60%;
+            }
+            #deals
+            {
+                margin-top: 5%;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                background-image: url("dealsImg1.jpg");
+                background-size: cover;
+                background-color: royalblue;
+                border-radius: 10px;
+                width: 60%;
+                min-height: 50%;
+                height:auto;
+            }
+            #searchPackageButton
+            {
+                background-color: royalblue;
+                color: white;
+                border-radius: 10px;
+                border: transparent;
+                margin-left: 50px;
+                width: 100px;
+                height:40px;
+            }
+            #formTitle
+            {
+                color:#183173 ;
+                font-size: 20px;   
+                margin-bottom: 20px;
+            }
+            #packageTitle
+            {
+                margin-left:20px;
+                margin-top: 10%;
+                color:white ;
+                font-size: 200%;
+            }
+            p#packageDesc
+            {
+                margin-top:20px;
+                font-size: 50%;
+                max-width: 500px;
+            }
+            #ads
+            {
+                margin-top: 5%;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                background-color: white;
+                border-radius: 10px;
+                width: 60%;
+            }
+            #adTitle
+            {
+                color:#183173 ;
+                font-size: 20px;   
+                margin-bottom: 20px;
+            }
+            /* Style when screen is less than 1000px*/
+            @media only screen and (max-width:1000px)
+            {
+                #searchPackageButton
+                {
+                    margin-left: 0px;
+                }
+            }
+        </style>
 	</head>
 	
 	<body>
         <!--Calls header.ejs to write html to display the header and the navigation bar-->  
         <header class = "container-fluid">
-            <%-include("ejsSub/header.ejs");%>
+            <%-include("ejsSub/header.ejs")%>
         </header>		
         <br/>
 
         <!--main container for content-->
-        <div class = "text-center">
-            
+        <div class = "container text-center" id = "vacationForm">
+            <h1 id = "formTitle">Find Your Vacation</h1>
+            <form class = "container" id = "searchVacationId" method = "post" action = "/Vacation_Packages_From_Home">
+                <input type = "text" name = "searchPackageName" id  = "searchId" placeholder="Search Package Name"></input>
+                <input type = "date" name = "startDate" id  = "strDateId"></input> <!--- Creates date droplist for user to select a date --->	
+                <input type = "date" name = "endDate" id  = "endDateId"></input> <!--- Creates date droplist for user to select a date --->
+                <button type = "button" id = "searchPackageButton" onclick = "filterFromHome('searchId','strDateId','endDateId')">Search</button>
+            </form>
+        </div>
+        <div class = "container" id = "deals" >
+            <h1 id = "packageTitle">Package Deals and News</a>
+            <br/>
+            <p id = "packageDesc">This is can descibe what packages deal are avaliable or any news about new packages.</p>
+        </div>
+
+        <div class = "container text-center" id = "ads">
+            <div class = "row" id = "packageAds">
+                <div class = "popularPackages">
+                    <img id = "adPackage 0" class = "adImages" src = ""></img>
+                    <br/>
+                    <h2 id = "adTitle">Most Popular Package</h2>
+                    <p id = "adDesc">This can be the package the performs the best.</p>
+                </div>
+    
+                <div class = "popularPackages" >
+                    <img id = "adPackage 1" class = "adImages" src = ""></img>
+                    <h2 id = "adTitle">Seasonal Package</h2>
+                    <p id = "adDesc">This can be a seasonal package.</p>
+                </div>
+    
+                <div class = "popularPackages">
+                    <img id = "adPackage 2" class = "adImages" src = ""></img>
+                    <h2 id = "adTitle">Limited Time Package</h2>
+                    <p id = "adDesc">This can be a limited time package.</p>
+                </div>
+            </div>
         </div>
 
         <!--Footer-->
-        <footer class = "container">
-            <%-include("ejsSub/footer.ejs");%>
+        <footer>
+            <%-include("ejsSub/footer.ejs")%>
         </footer>
 	</body>
 </html>

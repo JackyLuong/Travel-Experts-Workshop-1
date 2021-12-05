@@ -2,13 +2,18 @@
 <html>
 	<head> 
         <!--Calls head.ejs to write a script that changes the title and imports all the basic js,css, and logos for the page-->
-        <%-include("ejsSub/head.ejs", {name:"Cheap Vacatoion Packages"})%> 
+        <%-include("ejsSub/head.ejs", {name:"Cheap Vacation Packages"})%> 
 
         <!--Calls whenWindowResizes.ejs to write a script that reads when the window is resized-->
         <%-include("ejsSub/whenWindowResizes.ejs")%> 
 
+        
         <script src = "vacationPackageScript.js"></script>
 
+        <% if(isFromHome == true) {%>
+            <%-include("ejsSub/getSessionStorageFromMain.ejs")%>
+        <%}%>
+        
         <style>
             /*Style for entire input tag and a button for the user to select what country they are from*/
             input
@@ -40,6 +45,7 @@
                 border: 1px solid #1f2a5a;
                 background-color: #F3F3F3 ;
                 border-radius: 10px;
+                width: 60%;
             }
             #containers
             {

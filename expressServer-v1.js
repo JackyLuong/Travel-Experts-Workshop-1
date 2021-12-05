@@ -110,7 +110,31 @@ app.use("/Vacation_Packages",(req,res) =>
             {
                 client.close();
                 console.log(packageArray[2]);
-                res.render("vacationPackages.ejs", {packages:packageArray, loggedIn:isLoggedIn});
+                res.render("vacationPackages.ejs", {packages:packageArray, loggedIn:isLoggedIn, isFromHome:false});
+            });
+    });
+});
+
+//Serves VacationPackages page if the url extension is "/Vacation_Packages."
+app.use("/Vacation_Packages_From_Home",(req,res) =>
+{
+    var packageArray = new Array();
+    mongo.connect(url, {useNewUrlParser:true, useUnifiedTopology:true}, (err, client)=>
+    {
+        if(err) throw err;
+
+        var packagesDb = client.db("TravelExpertsDB");
+        var packageCursor =  packagesDb.collection("packages").find();
+        
+        packageCursor.forEach((doc,err)=>
+        {
+            if(err) throw err;
+            packageArray.push(doc);
+        }, ()=>
+            {
+                client.close();
+                console.log(packageArray[2]);
+                res.render("vacationPackages.ejs", {packages:packageArray, loggedIn:isLoggedIn, isFromHome:true});
             });
     });
 });
@@ -118,8 +142,27 @@ app.use("/Vacation_Packages",(req,res) =>
 //Serves Home page if the url extension is "/Home."
  app.use("/Home",(req,res) =>
 {
-    res.render("main", {loggedIn: isLoggedIn});
+    var packageArray = new Array();
+    mongo.connect(url, {useNewUrlParser:true, useUnifiedTopology:true}, (err, client)=>
+    {
+        if(err) throw err;
+
+        var packagesDb = client.db("TravelExpertsDB");
+        var packageCursor =  packagesDb.collection("packages").find();
+        
+        packageCursor.forEach((doc,err)=>
+        {
+            if(err) throw err;
+            packageArray.push(doc);
+        }, ()=>
+            {
+                client.close();
+                console.log(packageArray[2]);
+                res.render("main.ejs", {packages:packageArray, loggedIn:isLoggedIn});
+            });
+    });
 });
+
 //Serves profile page if the url extension is "/Account."
 app.use("/Account",(req,res) =>
 {

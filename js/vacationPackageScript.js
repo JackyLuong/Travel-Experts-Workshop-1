@@ -45,3 +45,13 @@ function filter(searchField, startDate, endDate, package)
         };
     };
 };
+
+function filterFromHome()
+{
+
+    sessionStorage.setItem("search", document.getElementById("searchId").value);
+    sessionStorage.setItem("startDate", document.getElementById("strDateId").value);
+    sessionStorage.setItem("endDate", document.getElementById("endDateId").value);
+
+    document.getElementById("searchVacationId").submit();
+}

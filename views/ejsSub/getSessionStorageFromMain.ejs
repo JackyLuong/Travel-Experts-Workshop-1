@@ -1,0 +1,17 @@
+<script>
+    var homeSearchField = sessionStorage.getItem("search");
+    var homeStrDate = sessionStorage.getItem("startDate");
+    var homeEndDate= sessionStorage.getItem("endDate");
+    $(document).ready(()=>
+    {           
+        var searchAnswer = document.getElementById("searchId") 
+        var startDateAnswer = document.getElementById("strDateId") 
+        var endDateAnswer = document.getElementById("endDateId") 
+
+        searchAnswer.value = homeSearchField;
+        startDateAnswer.value = homeStrDate ;
+        endDateAnswer.value = homeEndDate;
+
+        filter('searchId','strDateId','endDateId', 'packages');
+    });
+</script>
