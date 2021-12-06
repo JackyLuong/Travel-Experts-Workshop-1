@@ -26,6 +26,31 @@ app.use("/Contact",(req,res)=>
     res.render("contact.ejs", {loggedIn: isLoggedIn});
 });
 
+app.use("/Contact_Submit", (req, res) =>
+{
+    var newUserTicket = 
+    {
+        custFirstName: req.body.FirstName,
+        custLastName: req.body.LastName,
+        custEmail: req.body.Email,
+        custPhone: req.body.Phone,
+        custConcern: req.body.Concern
+    };
+
+    mongo.connect(url,{useNewUrlParser:true, useUnifiedTopology:true}, (err, client)=>
+    {
+        if(err) throw err;
+        var db = client.db("TravelExpertsDB");
+        db.collection("customerTickets").insertOne(newUserTicket, (err,result) =>
+        {
+            if(err) throw err;
+            console.log("item inserted");
+            client.close();
+        });
+    });
+    res.render("thanksForSubmitting.ejs", {loggedIn: isLoggedIn});
+});
+
 //Serves SignIn page if the url extension is "/SignIn."
 app.use("/SignUp",(req,res)=>
 {

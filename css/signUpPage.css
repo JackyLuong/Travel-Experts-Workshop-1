@@ -84,3 +84,8 @@ input, #selectedCountry
     background-color: white;
     color: #6D6D6D;
 }
+#submitButton:enabled
+{
+    background-color: royalblue;
+    border: transparent;
+}
