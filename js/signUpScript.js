@@ -11,19 +11,24 @@ function checkTextBox(idName)
     var textInBox= document.getElementById(idName).value;
     console.log(textInBox);
     
+    //Checks the input fields to see if there are only letters
     if(textInBox.length > 0 && textInBox.match(/^[a-zA-Z]+$/g) && textInBox.length != null) 
     {
         errorMessage = "";
         document.getElementById("message").innerHTML = errorMessage;
+        
+        //Checks if the field is filled
         validate();
     }
     else
     {
+        //Sends error message
         errorMessage = "Invalid " + document.getElementById(idName).name;
         document.getElementById("message").innerHTML = errorMessage;
         document.getElementById("message").focus();
         return document.getElementById(idName).value = "";
     };
+    //Checks if the field is filled
     validate();
 };
 
@@ -36,19 +41,24 @@ function checkPhone(idName)
     var textInBox= document.getElementById(idName).value;
     console.log(textInBox);
     
+    //Checks if the phone format matches 111-222-3333
     if(textInBox.length > 0 && textInBox.match(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/) && textInBox.length != null) 
     {
         errorMessage = "";
         document.getElementById("message").innerHTML = errorMessage;
+        
+        //Checks if the field is filled
         validate();
     }
     else
     {
+        //Sends error message
         errorMessage = "Invalid " + document.getElementById(idName).name;
         document.getElementById("message").innerHTML = errorMessage;
         document.getElementById("message").focus();
         return document.getElementById(idName).value = "";
     };
+    //Checks if the field is filled
     validate();
 };
 
@@ -61,19 +71,24 @@ function checkPostal(idName)
     var textInBox= document.getElementById(idName).value;
     console.log(textInBox);
 
+    //Checks if the phone format matches A1A 1A1
     if(textInBox.length > 0 && textInBox.match(/^[A-Z]\d[A-Z]\s?\d[A-Z]\d$/) && textInBox.length != null) 
     {
         errorMessage = "";
         document.getElementById("message").innerHTML = errorMessage;
+
+        //Checks if the field is filled
         validate();
     }
     else
     {
+        //Sends error message
         errorMessage = "Invalid " + document.getElementById(idName).name;
         document.getElementById("message").innerHTML = errorMessage;
         document.getElementById("message").focus();
         return document.getElementById(idName).value = "";
     };
+    //Checks if the field is filled
     validate();
 };
 
@@ -83,6 +98,8 @@ function checkEmailUniquness(idName, userArray)
 {
     var currentEmail = document.getElementById(idName).value;
     var emailMismatched = 0;
+
+    //Gets all the customer emails from the database
     for(i = 0; i <userArray.length; i++)
     {
         if(userArray[i].custEmail != currentEmail)
@@ -94,16 +111,22 @@ function checkEmailUniquness(idName, userArray)
     {
         errorMessage = "";
         document.getElementById("message").innerHTML = errorMessage;
+
+        //Checks if the field is filled
         validate();
     }
     else
     {
+        /*sends error message if the user typed an 
+        email that matches one of the customer emails in the database*/
         errorMessage = "This email is already used.";
         document.getElementById("message").innerHTML = errorMessage;
         document.getElementById("message").focus();
         return document.getElementById(idName).value = "";
     };
     emailMismatched = 0;
+
+    //Checks if the field is filled
     validate();
 };
 
@@ -115,6 +138,8 @@ function validate()
     var inputForm = document.getElementById("form");
     var inputs = inputForm.getElementsByTagName("input");
     var inputsFilled = 0;
+
+    //Checks all fields if they are filled
     for(i = 0; i <inputs.length; i++)
     {
         if(inputs[i].value != null && inputs[i].value != "")
@@ -122,12 +147,16 @@ function validate()
             inputsFilled ++;
         };
     };
+
+    //Enables the submit button if all fields are filled and a country is selected
     if(inputsFilled == inputs.length && 
         document.getElementById("selectedCountry").innerHTML != "Select A Country")
     {
         document.getElementById("submitButton").disabled = false;
 
     }
+
+    //Disables the submit button if one field is not filled
     else
     {
         console.log(inputsFilled);
@@ -226,8 +255,11 @@ function validateLogin(email, password, userArray)
     var currentEmail = document.getElementById(email).value;
     var currentPassword = document.getElementById(password).value;
     var noMatch  = 0;
+
+    //Checks the email and password to see if it matches any of the customer accounts in the database
     for(i = 0; i <userArray.length; i++)
     {
+        //Allow the user to login if their login information matches with one of the customer accounts in the databse
         if(userArray[i].custEmail == currentEmail && userArray[i].custPassword == currentPassword)
         {
             document.getElementById("form").submit();
@@ -239,6 +271,8 @@ function validateLogin(email, password, userArray)
             noMatch ++;
         };
     };
+
+    //Sends error message if there are not matches found
     if(noMatch == userArray.length)
     {
         errorMessage = "Incorrect email or password";

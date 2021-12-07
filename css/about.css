@@ -1,0 +1,151 @@
+/*Style for pageTitle div*/
+#aboutId
+{
+    width:auto;
+    margin-top: 30px;
+}
+/*Style for pageTitle*/
+#pageTitle
+{
+    color:#183173;
+}
+/*Style for pageTitle*/
+#headerTitle
+{
+    width:100%;
+    left:0;
+    position: absolute;
+    text-align: center;
+    clear:both;
+    margin-top:30px;
+}
+/*Style for top left image*/
+#headerImg1
+{
+    width: auto;
+    height:30%;
+    float:left;
+}
+/*Style for top right*/
+#headerImg2
+{
+    width: auto;
+    height:30%;
+    float:right;
+}
+/*Style for achievement icon*/
+#achImage
+{   
+    border-radius: 10px;
+    width: 60%;
+    height:auto;
+}
+/*Style for achievement description*/
+#achDesc
+{
+    text-align: left;
+    font-size: 150%;
+}
+/*Style for achievement div*/
+#achievements
+{
+    margin-top: 200px;
+    padding-top: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+}
+/*hide parts of paragraphs*/
+.more
+{
+    display:none;
+}
+/*Style for read more button*/
+.readMoreButton
+{
+    background-color: royalblue;
+    color: white;
+    border-radius: 10px;
+    border: transparent;
+    width: 100px;
+    height:40px;
+}
+/* Style for read more button when its hovered*/
+.readMoreButton:hover
+{
+    background-color: rgb(43, 80, 190);
+}
+/*Style for images in div's*/
+.containerImg
+{
+    float: left;
+    width: 22%;
+    padding: 5px;
+}
+/*Style for paragraphs in div's*/
+.containerDesc
+{
+    float: left;
+    width: 60%;
+    padding: 5px;
+}
+/* Clearfix (clear floats) */
+.row::after 
+{
+    content: "";
+    clear: both;
+    display: table;
+}
+/*Style for information below the achievements*/
+.moreInfo
+{
+    margin-top: 200px;
+    padding-top: 20px;
+    border-radius: 10px;
+   margin-left: 2%;
+    background-color: white;
+    float: left;
+    width: 31%;
+    padding: 5px;
+}
+/* Clearfix (clear floats) */
+.moreInfoRow::after 
+{
+    content: "";
+    clear: both;
+    display: table;
+}
+/*Style for information titles*/
+#infoTitle
+{
+    color:#183173 ;
+    font-size: 20px;   
+    margin-bottom: 20px;
+}
+/*Style for information description*/
+#infoDesc
+{
+    text-align: left;
+}
+/* Style when screen is less than 1000px*/
+@media only screen and (max-width:1000px)
+{
+    /*Style for top left image*/
+    #headerImg1
+    {
+        max-width:200px;
+        height:auto;
+    }
+    /*Style for top right image*/
+    #headerImg2
+    {
+        max-width:200px;
+        height:auto;
+    }
+
+    /*Style for achievement description*/
+    #achDesc
+    {
+        font-size: 100%;
+    }
+}

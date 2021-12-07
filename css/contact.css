@@ -1,0 +1,26 @@
+/*Style for entire form*/
+form
+{
+    margin-top: 30px;
+}
+/*Style for concerns*/
+textarea
+{
+    border-radius: 10px;
+    border: 2px solid black;
+    width: 300px;
+    height:40px;
+    margin-bottom: 20px;
+    width: 300px;
+    height:auto;
+}
+/*Style for entire input tag*/
+input
+{
+    border-radius: 10px;
+    border: 2px solid black;
+    width: 300px;
+    height:40px;
+    margin-bottom: 20px;
+    color:black;
+}

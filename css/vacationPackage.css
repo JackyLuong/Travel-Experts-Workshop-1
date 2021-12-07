@@ -1,0 +1,104 @@
+/*Style for input*/
+input
+{
+    border-radius: 10px;
+    border: 2px solid black;
+    width: 400px;
+    height:40px;
+    padding-left: 10px;
+    margin-left: 10px;
+    color:#1f2a5a;
+}
+/*Style for vacation search tool*/
+#vacationForm
+{
+    margin-top: 5%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: 1px solid black;
+    background-color: #F3F3F3 ;
+    border-radius: 10px;
+    width: 60%;
+}
+/*Style for startDate input field*/
+#strDateId
+{
+    width:150px;
+}
+/*Style for endDate input field*/
+#endDateId
+{
+    width:150px;
+}
+/*Style for packages*/
+#containers
+{
+    margin-top: 5%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 10px;
+    width: 60%;
+    height:auto
+}
+/*Style for search button*/
+#searchPackageButton
+{
+    background-color: royalblue;
+    color: white;
+    border-radius: 10px;
+    border: transparent;
+    margin-left: 50px;
+    width: 100px;
+    height:40px;
+}
+/* Style for searchPackageButton when its hovered*/
+#searchPackageButton:hover
+{
+    background-color: rgb(43, 80, 190);
+}
+/*Style for package title*/
+#packageTitle
+{
+    color:#183173 ;
+    font-size: 36px;
+}
+/*Style for package start and end date*/
+h2#packageStrtEndDates
+{
+    margin-bottom: -5px;
+    font-size: 16px;
+}
+/*Style for package description*/
+p#packageDesc
+{
+    font-size: 20px;
+    max-width: 800px;
+}
+/*Style for package price*/
+#packagePrice
+{
+    text-align: right;
+    font-size: 22px;
+}
+/* Style when screen is less than 1000px*/
+@media only screen and (max-width:1000px)
+{
+    input
+    {
+        width:60%;
+    }
+    #strDateId
+    {
+        width:60%;
+    }
+    #endDateId
+    {
+        width:60%;
+    }
+    #searchPackageButton
+    {
+        margin-left: 0px;
+    }
+}

@@ -10,59 +10,13 @@
         <!--Fontawesom icons-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
         
+        <!--Login.css to style the page-->
+        <link rel="stylesheet" href="login.css"></link>
+        
         <script>
             var userJsonDump = '<%-JSON.stringify(userProfiles)%>';
             var userArray = JSON.parse(userJsonDump);
         </script>
-        
-        <style>
-            #SignUpForm
-            {
-                position: relative;
-                top:50px;
-                border: 1px solid #1f2a5a;
-                background-color: #F3F3F3 ;
-                border-radius: 10px;
-                padding-top: 2%;
-                padding-bottom: 2%;
-                height:90%;
-                z-index: 1;
-            }
-            form
-            {
-                margin-top: 30px;
-            }
-            input
-            {
-                border-radius: 10px;
-                border: 2px solid #1f2a5a;
-                width: 300px;
-                height:40px;
-                color:#1f2a5a;
-            }
-            #emailId
-            {
-                margin-bottom: 20px;
-            }
-            #pass
-            {
-                margin-left: 20px;
-            }
-            #message
-            {
-                color:red;
-            }
-            #passRequirements
-            {
-                text-align: left;
-                border-radius: 10px;
-                border: 1px solid #1f2a5a;
-                background-color:#F3F3F3;
-                width: 300px;
-                visibility: hidden;
-                height:0px;
-            }
-        </style>
 
         <!--Calls whenWindowResizes.ejs to write a script that reads when the window is resized-->
         <%-include("ejsSub/whenWindowResizes.ejs")%> 
@@ -77,14 +31,12 @@
 
         <!--main container for content-->
         <div class = "text-center mt-5" >
-            <h1>Sign In</h1>
+            <h1 id = "pageTitle">Sign In</h1>
+            
             <!--Displays error message if user puts in an invalid input-->
             <p id= "message"></p>
+        
             <form method = "post" action = "/validateLogin" class = "container-fluid" id= "form">
-                <!-- textbox for user to type their name, max length is 1000 and user has to to type something in before submitting
-                        uses: signUpScript.js.validate() function line 66
-                        uses: signUpScript.js.showPass() function line 109-->
-
                 <!--- textbox for user to type their email, user has to to type something in before submitting and have an @ sign--->
                 <input type ="email" name = "Email" id = "emailId" required = "required" placeholder = "Email"></input>
                 <br/>

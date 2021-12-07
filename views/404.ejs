@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head> 
+        <!--Calls head.ejs to write all the files needed-->
         <%-include("ejsSub/head.ejs", {name:"404 Page Not Found"})%> 
 
         <!--Calls whenWindowResizes.ejs to write a script that reads when the window is resized-->
@@ -13,12 +14,10 @@
             <%-include("ejsSub/header.ejs")%>
         </header>		
         <br/>
-
         <!--main container for content-->
         <div>
             <h1>404 Page Not Found</h1>
         </div>
-
         <!--Footer-->
         <footer class = "container">
             <%-include("ejsSub/footer.ejs")%>

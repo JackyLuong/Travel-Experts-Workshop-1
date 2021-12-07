@@ -1,17 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-/* Style for header*/
 html
 {
     height:100%;
 }
+/*Style scrollbar*/
+::-webkit-scrollbar
+{
+    width: 10px;
+}
+/*Style scrollbar thumb*/
+::-webkit-scrollbar-thumb
+{
+    background: #D3D3D3;
+    border-radius: 10px;
+}
+/* Style for header*/
 header
 {
-    background-color: #101425;
+    background-color: black;
     float:left;
 }
 /* Style for body*/
 body
 {
+    background-color: aliceblue;
     height:100%;
     font-family: 'Lato', sans-serif;
 }
@@ -29,7 +41,6 @@ z-index: 1px;
     margin-bottom: 15px;
     font-family: 'Lato', sans-serif;
 }
-
 /* Style for 3 line icon when the screen width is less than 1000px*/
 #navMiniButtonIcon
 {
@@ -71,10 +82,10 @@ z-index: 1px;
 {
     color:#FDAF2F;
 }
-
 /* Posiitons for navigation Menu and hides it on default*/
 #navMiniMenu
 {
+    background-color:aliceblue;
     position: absolute;
     left:0;
     z-index: 2;
@@ -95,9 +106,49 @@ z-index: 1px;
     width:100%;
     z-index: 2px;
 }
+/* Style for navigation Menu buttons when hovered*/
+#navMiniMenu button:hover
+{
+    color:#FDAF2F;
+}
 /* Style Logo*/
 #logo
 {
     width: 200px;
     height:auto;
+}
+/* Style for sign in button*/
+#signInButton
+{
+    background-color: royalblue;
+    color:white;
+}
+/* Style for sign in button when its hovered*/
+#signInButton:hover
+{
+    background-color: rgb(43, 80, 190);
+    color:#FDAF2F;
+}
+
+/*Style for pageTitle*/
+#pageTitle
+{
+    color:#183173;
+}
+/*Style for submit Button enabled*/
+#submitButton:enabled
+{
+    background-color: royalblue;
+    border: transparent;
+}
+/*Style for submit Button enabled and hovered*/
+#submitButton:enabled:hover
+{
+    background-color: rgb(43, 80, 190);
+    border: transparent;
+}
+/*Style for error message*/
+#message
+{
+    color:red;
 }

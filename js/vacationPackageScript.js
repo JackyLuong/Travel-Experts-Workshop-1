@@ -46,6 +46,7 @@ function filter(searchField, startDate, endDate, package)
     };
 };
 
+//Gets the user's input in the home page and sends it to the vacation page to filter the packages.
 function filterFromHome()
 {
 

@@ -3,10 +3,7 @@
 	<head> 
         <!--Calls head.ejs to write a script that changes the title and imports all the basic js,css, and logos for the page-->
         <%-include("ejsSub/head.ejs", {name:"Sign Up"})%> 
-
-        <!--Script for SignUp Page-->
-        <script src="require.js"></script>
-
+        
         <!--Script for SignUp Page-->
         <script src="signUpScript.js"></script>
 
@@ -34,22 +31,10 @@
 
         <!--main container for content-->
         <div class = "text-center mt-5" >
-            <h1>Create Account</h1>
+            <h1 id = "pageTitle">Create Account</h1>
             <!--Displays error message if user puts in an invalid input-->
             <p id= "message"></p>
             <form method = "post" action = "/SignUpDone" class = "container-fluid" id= "form">
-                <!-- textbox for user to type their name, max length is 1000 and user has to to type something in before submitting
-                        uses: signUpScript.js.checkTextBox() function line 8
-                        uses: signUpScript.js.checkPhone() function line 33
-                        uses: signUpScript.js.checkPostal() function line 58
-                        uses: signUpScript.js.checkEmailUniquness() function line 81
-                        uses: signUpScript.js.validate() function line 114
-                        uses: signUpScript.js.showPassRequirements() function line 142
-                        uses: signUpScript.js.showPass() function line 159
-                        uses: signUpScript.js.showCountries() function line 176
-                        uses: signUpScript.js.setFromDropDownField() function line 189
-                        uses: signUpScript.js.filter() function line 198-->
-
                 <!--- textbox for user to type their first name--->
                 <input type ="text" maxLength = "1000" name = "FirstName"  id = "fNameId" placeholder = "First name" onchange = "checkTextBox(this.id);"></input>
                 <br/>

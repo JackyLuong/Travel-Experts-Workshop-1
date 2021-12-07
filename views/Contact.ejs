@@ -5,65 +5,11 @@
         <%-include("ejsSub/head.ejs", {name:"Sign Up"})%> 
 
         <!--Script for SignUp Page-->
-        <script src="require.js"></script>
-
-        <!--Script for SignUp Page-->
         <script src="contactScript.js"></script>
 
-        <!--Fontawesom icons-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-        <style>
-            /*Style for entire form*/
-            form
-            {
-                margin-top: 30px;
-            }
+        <!--Calls contact.css to style the page-->
+        <link rel="stylesheet" href="contact.css"></link>
 
-            /*Style scrollbar*/
-            ::-webkit-scrollbar
-            {
-                width: 10px;
-            }
-
-            /*Style scrollbar thumb*/
-            ::-webkit-scrollbar-thumb
-            {
-                background: #D3D3D3;
-                border-radius: 10px;
-            }
-            textarea
-            {
-                border-radius: 10px;
-                border: 2px solid #1f2a5a;
-                width: 300px;
-                height:40px;
-                margin-bottom: 20px;
-                width: 300px;
-                height:auto;
-            }
-            /*Style for entire input tag and a button for the user to select what country they are from*/
-            input
-            {
-                border-radius: 10px;
-                border: 2px solid #1f2a5a;
-                width: 300px;
-                height:40px;
-                margin-bottom: 20px;
-                color:#1f2a5a;
-            }
-
-            /*Style for error message*/
-            #message
-            {
-                color:red;
-            }
-
-            #submitButton:enabled
-            {
-                background-color: royalblue;
-                border: transparent;
-            }
-        </style>
         <!--Calls whenWindowResizes.ejs to write a script that reads when the window is resized-->
         <%-include("ejsSub/whenWindowResizes.ejs")%> 
 	</head>
@@ -74,10 +20,9 @@
             <%-include("ejsSub/header.ejs")%>
         </header>		
         <br/>
-
         <!--main container for content-->
         <div class = "text-center mt-5" >
-            <h1>Contact Us</h1>
+            <h1 id ="pageTitle">Contact Us</h1>
             <!--Displays error message if user puts in an invalid input-->
             <p id= "message"></p>
             <form method = "post" action = "/Contact_Submit" class = "container-fluid" id= "form">
@@ -104,7 +49,6 @@
                 <button type = "reset" id = "resetButton" class = "btn btn-dark white-text mt-5" onclick = "return confirm('Do you want to reset?');">Reset</button>
             </form>
         </div>
-
         <!--Footer-->
         <footer class = "container">
             <%-include("ejsSub/footer.ejs")%>

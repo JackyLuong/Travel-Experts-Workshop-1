@@ -9,7 +9,8 @@
         <div class = "navButtons" id = "banner">
             <!--Navigation buttons-->
             <button type = "button"  onclick = "goToLinkInPage(0)">Home</button>
-            <button type = "button"  onclick = "goToLinkInPage(1)">Contact</button>
+            <button type = "button"  onclick = "goToLinkInPage(5)">About Us</button>
+            <button type = "button"  onclick = "goToLinkInPage(1)">Contact Us</button>
             <button type = "button"  onclick = "goToLinkInPage(3)">Vacation Packages</button>
             <!--Changes the button to view profile if the user is logged in-->
             <% if(loggedIn == false) {%>
@@ -25,9 +26,10 @@
     </div>
     
     <!--Drop down menu-->
-    <div class = "container-fluid bg-white" id= "navMiniMenu">
+    <div class = "container-fluid" id= "navMiniMenu">
         <button type = "button"  onclick = "goToLinkInPage(0)">Home</button></br>
-        <button type = "button"  onclick = "goToLinkInPage(1)">Contact</button></br>
+        <button type = "button"  onclick = "goToLinkInPage(5)">About Us</button></br>
+        <button type = "button"  onclick = "goToLinkInPage(1)">Contact Us</button></br>
         <button type = "button"  onclick = "goToLinkInPage(3)">Vacation Packages</button>
         
         <!--Changes the button to view profile if the user is logged in-->

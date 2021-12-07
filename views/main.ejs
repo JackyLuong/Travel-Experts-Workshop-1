@@ -7,7 +7,13 @@
         <!--Calls whenWindowResizes.ejs to write a script that reads when the window is resized-->
         <%-include("ejsSub/whenWindowResizes.ejs")%> 
 
+        <!--Calls homePage.css to style the page-->
+        <link rel = "stylesheet" type = "text/css" href = "homePage.css"></link>
+        
+        <!--Calls vacationPackageScript.js to link the search tool to the vacation packages page-->
         <script src = "vacationPackageScript.js"></script>
+        
+        <!--Creates an array of images for ads-->
         <script>
             var adPackageImages = new Array();
 			for(i = 0; i <3; i++)
@@ -24,126 +30,6 @@
                 };
             });
         </script>
-
-        <style>
-            /*Style for entire input tag and a button for the user to select what country they are from*/
-            input
-            {
-                border-radius: 10px;
-                border: 2px solid #1f2a5a;
-                width: 300px;
-                height:40px;
-                color:#1f2a5a;
-            }
-
-            /*Style scrollbar*/
-            ::-webkit-scrollbar
-            {
-                width: 10px;
-            }
-
-            /*Style scrollbar thumb*/
-            ::-webkit-scrollbar-thumb
-            {
-                background: #D3D3D3;
-                border-radius: 10px;
-            }
-            .popularPackages
-            {
-                float: left;
-                width: 33.33%;
-                padding: 5px;
-            }
-
-            .row::after 
-            {
-                content: "";
-                clear: both;
-                display: table;
-            }
-
-            .adImages
-            {
-                border-radius: 10px;
-                width: 90%;
-                height:auto;
-            }
-            #vacationForm
-            {
-                margin-top: 5%;
-                padding-top: 20px;
-                padding-bottom: 20px;
-                border: 1px solid #1f2a5a;
-                background-color: white;
-                border-radius: 10px;
-                width: 60%;
-            }
-            #deals
-            {
-                margin-top: 5%;
-                padding-top: 20px;
-                padding-bottom: 20px;
-                background-image: url("dealsImg1.jpg");
-                background-size: cover;
-                background-color: royalblue;
-                border-radius: 10px;
-                width: 60%;
-                min-height: 50%;
-                height:auto;
-            }
-            #searchPackageButton
-            {
-                background-color: royalblue;
-                color: white;
-                border-radius: 10px;
-                border: transparent;
-                margin-left: 50px;
-                width: 100px;
-                height:40px;
-            }
-            #formTitle
-            {
-                color:#183173 ;
-                font-size: 20px;   
-                margin-bottom: 20px;
-            }
-            #packageTitle
-            {
-                margin-left:20px;
-                margin-top: 10%;
-                color:white ;
-                font-size: 200%;
-            }
-            p#packageDesc
-            {
-                margin-top:20px;
-                font-size: 50%;
-                max-width: 500px;
-            }
-            #ads
-            {
-                margin-top: 5%;
-                padding-top: 20px;
-                padding-bottom: 20px;
-                background-color: white;
-                border-radius: 10px;
-                width: 60%;
-            }
-            #adTitle
-            {
-                color:#183173 ;
-                font-size: 20px;   
-                margin-bottom: 20px;
-            }
-            /* Style when screen is less than 1000px*/
-            @media only screen and (max-width:1000px)
-            {
-                #searchPackageButton
-                {
-                    margin-left: 0px;
-                }
-            }
-        </style>
 	</head>
 	
 	<body>
@@ -153,7 +39,7 @@
         </header>		
         <br/>
 
-        <!--main container for content-->
+        <!--Vacation search tool-->
         <div class = "container text-center" id = "vacationForm">
             <h1 id = "formTitle">Find Your Vacation</h1>
             <form class = "container" id = "searchVacationId" method = "post" action = "/Vacation_Packages_From_Home">
@@ -163,27 +49,32 @@
                 <button type = "button" id = "searchPackageButton" onclick = "filterFromHome('searchId','strDateId','endDateId')">Search</button>
             </form>
         </div>
+
+        <!--Package deals-->
         <div class = "container" id = "deals" >
-            <h1 id = "packageTitle">Package Deals and News</a>
+            <h1 id = "dealTitle">Package Deals and News</a>
             <br/>
-            <p id = "packageDesc">This is can descibe what packages deal are avaliable or any news about new packages.</p>
+            <p id = "dealDesc">This is can describe what package deals are avaliable or any news about new packages.</p>
         </div>
 
+        <!--ads-->
         <div class = "container text-center" id = "ads">
             <div class = "row" id = "packageAds">
+                <!--Popular packages-->
                 <div class = "popularPackages">
                     <img id = "adPackage 0" class = "adImages" src = ""></img>
-                    <br/>
                     <h2 id = "adTitle">Most Popular Package</h2>
-                    <p id = "adDesc">This can be the package the performs the best.</p>
+                    <p id = "adDesc">This can be the package that performs the best.</p>
                 </div>
-    
+
+                <!--Seasonal packages-->
                 <div class = "popularPackages" >
                     <img id = "adPackage 1" class = "adImages" src = ""></img>
                     <h2 id = "adTitle">Seasonal Package</h2>
                     <p id = "adDesc">This can be a seasonal package.</p>
                 </div>
-    
+
+                <!--Limited time packages-->
                 <div class = "popularPackages">
                     <img id = "adPackage 2" class = "adImages" src = ""></img>
                     <h2 id = "adTitle">Limited Time Package</h2>

@@ -1,4 +1,4 @@
-var links = ["/Home", "/Contact", "/Login","/Vacation_Packages", "/Account"];
+var links = ["/Home", "/Contact", "/Login","/Vacation_Packages", "/Account","/About"];
 var dropDownImages = ["DropDownIcon.svg","DropDownIconHovered.svg"];
 var dropDownVisible = true;
 

@@ -4,24 +4,11 @@ form
     margin-top: 30px;
 }
 
-/*Style scrollbar*/
-::-webkit-scrollbar
-{
-    width: 10px;
-}
-
-/*Style scrollbar thumb*/
-::-webkit-scrollbar-thumb
-{
-    background: #D3D3D3;
-    border-radius: 10px;
-}
-
 /*Style for entire input tag and a button for the user to select what country they are from*/
 input, #selectedCountry
 {
     border-radius: 10px;
-    border: 2px solid #1f2a5a;
+    border: 2px solid black;
     width: 300px;
     height:40px;
     margin-bottom: 20px;
@@ -34,18 +21,12 @@ input, #selectedCountry
     margin-left: 20px;
 }
 
-/*Style for error message*/
-#message
-{
-    color:red;
-}
-
 /*Style for password requirement*/
 #passRequirements
 {
     text-align: left;
     border-radius: 10px;
-    border: 1px solid #1f2a5a;
+    border: 1px solid black;
     background-color:#F3F3F3;
     width: 300px;
     visibility: hidden;
@@ -56,7 +37,7 @@ input, #selectedCountry
 #countryDropDown
 {
     border-radius: 5px;
-    border: 1px solid #1f2a5a;
+    border: 1px solid black;
     background-color:white;
     padding: 10px;
     text-align: left;
@@ -83,9 +64,4 @@ input, #selectedCountry
     text-align: left;
     background-color: white;
     color: #6D6D6D;
-}
-#submitButton:enabled
-{
-    background-color: royalblue;
-    border: transparent;
 }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <!--Calls head.ejs to write a script that changes the title and imports all the basic js,css, and logos for the page-->
+        <%-include("ejsSub/head.ejs", {name:"Travel Experts Profile"})%> 
+
+        <!--Calls whenWindowResizes.ejs to write a script that reads when the window is resized-->
+        <%-include("ejsSub/whenWindowResizes.ejs");%> 
+
+        <!--Call about.css to input css for this page-->
+        <link rel = "stylesheet" type = "text/css" href = "about.css"></link>
+
+        <!--Call aboutScript.js to get functions for this page-->
+        <script src = "aboutScript.js"></script>
+	</head>
+	
+	<body>
+        <!--Calls header.ejs to write html to display the header and the navigation bar-->  
+        <header class = "container-fluid">
+            <%-include("ejsSub/header.ejs");%>
+        </header>		
+        <br/>
+        <!--Displays images to the top corners-->
+        <img src = "aboutHeader.png" id ="headerImg1">
+        <img src = "aboutHeader2.png" id ="headerImg2">
+
+        <!--Page title-->
+        <div id = "aboutId">
+            <div id = "headerTitle">
+                <h1 id="pageTitle">About Us</h1>
+            </div>
+        </div>
+
+        <!--Display achievments and the description of those achievements-->
+        <div class = "container text-center" id = "achievements">
+            <div class = "row">
+                <div class = "containerImg">
+                    <img src="achieve.svg" id= "achImage" >
+                </div>
+
+                <div class = "containerDesc">
+                    <p id = "achDesc">Since 1998, Travel Experts has been committed to bring travellers the best value and quality travel arrangements. 
+                        We are passionate about traveling and providing corporate travellers high-touch services to facilitate their business travel 
+                        needs and share the world's wonders.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!--Displays extra information-->
+        <div class = "container text-center">
+            <div class = "moreInfoRow">
+                <!--Company profile-->
+                <div class = "moreInfo">
+                    <h2 id = "infoTitle">Company Profile</h2>
+                    <p id = "infoDesc">Since 1998, Travel Experts has been committed to bring travellers the best value and quality travel arrangements. 
+                        We are passionate about traveling and providing corporate travellers high-touch services <span id = "profDots">...</span><span class = "more" id = "profMore">to facilitate their business travel 
+                        needs and share the world's wonders.</span>
+                    </p>
+                    <button name = "readMore" id = "readMoreProfId" class = "readMoreButton" onclick = "readMore('profDots', 'profMore','readMoreProfId')">Read More</button>
+                </div>
+
+                <!--What makes Us Different-->
+                <div class = "moreInfo" >
+                    <h2 id = "infoTitle">What Makes Us Different</h2>
+                    <p id = "infoDesc">We are an employee-owned travel agency with a high bar for our integrity and dedication to customer service. 
+                        Our strong company culture is anchored by our mission and values.
+                        Our award winning company <span id = "diffDots">...</span><span class = "more" id = "diffMore">consistently ranks amoung the best agencies in the country.</br>OUR MISSION STATEMENT</br>
+                        We are an employee-owned company with a passion for providing exemplary customer service, 
+                        leveraging our expertise and technology to deliver innovative travel solutions.</span>
+                    </p>
+                    <button name = "readMore" id= "readMoreDiffId" class = "readMoreButton" onclick = "readMore('diffDots', 'diffMore','readMoreDiffId')">Read More</button>
+                </div>
+                
+                <!--Customer Service-->
+                <div class = "moreInfo">
+                    <h2 id = "infoTitle">Customer Service</h2>
+                    <p id = "infoDesc">When you have an issue all you need to contact us. 
+                        The most relevant support resources are displayed to you in real-time so you can quickly resolve the issue. 
+                        If the issue isn’t resolved, you can choose from the <span id = "servDots">...</span><span class = "more" id = "servMore">
+                        full range of support options to contact us.
+                        The new support experience is specifically designed to provide you with personalized support options. 
+                        By completing the flow, you provide the context of your issue or problem up-front resulting in highly relevant search results. 
+                        But if you still need to contact us, we will also now be ready to support you more quickly and more comprehensively.</span>
+                    </p>
+                    <button name = "readMore" id= "readMoreServId" class = "readMoreButton" onclick = "readMore('servDots', 'servMore','readMoreServId')">Read More</button>
+                </div>
+            </div>
+        </div>
+
+        <!--Footer-->
+        <footer class = "container">
+            <%-include("ejsSub/footer.ejs");%>
+        </footer>
+	</body>
+</html>

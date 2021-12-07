@@ -26,6 +26,7 @@ app.use("/Contact",(req,res)=>
     res.render("contact.ejs", {loggedIn: isLoggedIn});
 });
 
+//Takes the user contact info and sends it to the database for an agent to see and contact customers
 app.use("/Contact_Submit", (req, res) =>
 {
     var newUserTicket = 
@@ -51,7 +52,9 @@ app.use("/Contact_Submit", (req, res) =>
     res.render("thanksForSubmitting.ejs", {loggedIn: isLoggedIn});
 });
 
-//Serves SignIn page if the url extension is "/SignIn."
+/*Serves SignIn page if the url extension is "/SignIn."
+    It get all the user information and country information and 
+    send it to the sign in page*/
 app.use("/SignUp",(req,res)=>
 {
     var userArray = new Array();
@@ -84,39 +87,33 @@ app.use("/SignUp",(req,res)=>
     });
 });
 
-//Serves SignIn page if the url extension is "/SignIn."
+/*Serves login page if the url extension is "/Login."
+    It get all the user information and 
+    send it to the login page*/
 app.use("/Login",(req,res)=>
 {
     var userArray = new Array();
     mongo.connect(url, {useNewUrlParser:true, useUnifiedTopology:true}, (err, client)=>
     {
-        if(err) throw err;
-        var countryDb = client.db("TravelExpertsDB");
-        var countryCursor =  countryDb.collection("countries").find();
-        
+        if(err) throw err;  
         var userDb = client.db("TravelExpertsDB");
         var userCursor =  userDb.collection("customers").find();
         
-        countryCursor.forEach((doc,err)=>
+        userCursor.forEach((doc,err)=>
         {
             if(err) throw err;
-            countryArray.push(doc);
+            userArray.push(doc);
         }, ()=>
-            {
-            userCursor.forEach((doc, err)=>
-            {
-                if(err) throw err;
-                userArray.push(doc);
-            }, ()=>
-            {
-                client.close();
-                res.render("login.ejs", {userProfiles:userArray, loggedIn:isLoggedIn});
-            });
+        {
+            client.close();
+            res.render("login.ejs", {userProfiles:userArray, loggedIn:isLoggedIn});
         });
     });
 });
 
-//Serves VacationPackages page if the url extension is "/Vacation_Packages."
+/*Serves vacation packages page if the url extension is "/Vacation_Packages."
+    It get all the packages information and 
+    send it to the vacation packages page*/
 app.use("/Vacation_Packages",(req,res) =>
 {
     var packageArray = new Array();
@@ -134,13 +131,12 @@ app.use("/Vacation_Packages",(req,res) =>
         }, ()=>
             {
                 client.close();
-                console.log(packageArray[2]);
                 res.render("vacationPackages.ejs", {packages:packageArray, loggedIn:isLoggedIn, isFromHome:false});
             });
     });
 });
 
-//Serves VacationPackages page if the url extension is "/Vacation_Packages."
+//Accesses the vacation package page from the home page."
 app.use("/Vacation_Packages_From_Home",(req,res) =>
 {
     var packageArray = new Array();
@@ -158,7 +154,6 @@ app.use("/Vacation_Packages_From_Home",(req,res) =>
         }, ()=>
             {
                 client.close();
-                console.log(packageArray[2]);
                 res.render("vacationPackages.ejs", {packages:packageArray, loggedIn:isLoggedIn, isFromHome:true});
             });
     });
@@ -167,33 +162,21 @@ app.use("/Vacation_Packages_From_Home",(req,res) =>
 //Serves Home page if the url extension is "/Home."
  app.use("/Home",(req,res) =>
 {
-    var packageArray = new Array();
-    mongo.connect(url, {useNewUrlParser:true, useUnifiedTopology:true}, (err, client)=>
-    {
-        if(err) throw err;
-
-        var packagesDb = client.db("TravelExpertsDB");
-        var packageCursor =  packagesDb.collection("packages").find();
-        
-        packageCursor.forEach((doc,err)=>
-        {
-            if(err) throw err;
-            packageArray.push(doc);
-        }, ()=>
-            {
-                client.close();
-                console.log(packageArray[2]);
-                res.render("main.ejs", {packages:packageArray, loggedIn:isLoggedIn});
-            });
-    });
+    res.render("main.ejs", {loggedIn:isLoggedIn});
+});
+//Serves About page if the url extension is "/About."
+app.use("/About",(req,res) =>
+{
+    res.render("about.ejs", {loggedIn: isLoggedIn});
 });
 
 //Serves profile page if the url extension is "/Account."
 app.use("/Account",(req,res) =>
 {
-    res.render("profile", {loggedIn: isLoggedIn});
+    res.render("profile.ejs", {loggedIn: isLoggedIn});
 });
 
+//Takes the user's info and sends it to the database as a customer account.
 app.post("/SignUpDone",(req,res)=>
 {
     var newUser = 
@@ -243,5 +226,5 @@ app.use("/SignOut",(req,res) =>
 //Serves 404Error page if the server can't find the page that is being request.
 app.use((req, res, next) =>
 {
-    res.status(404).sendFile(__dirname + "/views/404.ejs");
+    res.status(404).render("404.ejs", {loggedIn: isLoggedIn});
 });
