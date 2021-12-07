@@ -18,37 +18,53 @@
         <!--Calls header.ejs to write html to display the header and the navigation bar-->  
         <header class = "container-fluid">
             <%-include("ejsSub/header.ejs")%>
-        </header>		
-        <br/>
-        <!--main container for content-->
-        <div class = "text-center mt-5" >
-            <h1 id ="pageTitle">Contact Us</h1>
-            <!--Displays error message if user puts in an invalid input-->
-            <p id= "message"></p>
-            <form method = "post" action = "/Contact_Submit" class = "container-fluid" id= "form">
-                <!-- textbox for user to type their name, max length is 1000 and user has to to type something in before submitting-->
+        </header>
+        <div class = "container">	
+            <div class = "row">
+                <div class ="column" id ="agencyInfo">
+                    <h1 id ="pageTitle">Contact Us</h1>
+                    <div id = "travelAgencies">
+                        <% for (i = 0; i < agencies.length; i++){ %>
+                            <div class = "container" id = "containers" >
+                                <p class = "info"><%=agencies[i].AgncyAddress%> <%=agencies[i].AgncyCity%></p>
+                                <p class = "info"><%=agencies[i].AgncyProv%> <%=agencies[i].AgncyPostal%></p>
+                                <p class = "info">Phone: <%=agencies[i].AgncyPhone%></p>
+                                <p class = "info">Fax: <%=agencies[i].AgncyFax%></p>
+                            </div>
+                        <%} %>
+                    </div>
+                </div>
 
-                <!-- textbox for user to type their first name--->
-                <input type ="text" maxLength = "1000" name = "FirstName"  id = "fNameId" placeholder = "First name" onchange = "checkTextBox(this.id);"></input>
-                <br/>
-                <!--- textbox for user to type their last name--->
-                <input type ="text"  maxLength = "1000" name = "LastName" id = "lNameId" placeholder = "Last name" onchange = "checkTextBox(this.id);"></input>	
-                <br/>
-                <!--- textbox for user to type their email--->
-                <input type ="email" name = "Email" id = "emailId" required = "required" placeholder = "Email"></input>
-                <br/>
-                <!--- textbox for business phone--->
-                <input type ="tel" name = "Phone" id = "phoneId" placeholder = "Phone example:403-222-3333" onchange = "checkPhone(this.id)"></input>
-                <br/>
-                <textarea name = "Concern" id = "concernId" placeholder = "What Do you need help with?" minLength = "1" onkeyup="validate();"></textarea>
-                <br/>
-                <!--- Button used to submit data --->
-                <button type = "submit" name = "Submit" id = submitButton class = "btn btn-dark white-text mt-5" disabled = "disabled" onclick = "validate();">Submit</button>
+                <div class = "column">
+                    <!--Displays error message if user puts in an invalid input-->
+                    <p id= "message"></p>
+                    <form method = "post" action = "/Contact_Submit" class = "container-fluid text-center" id= "form">
+                        <!-- textbox for user to type their name, max length is 1000 and user has to to type something in before submitting-->
 
-                <!--- Button used to reset the fields -->
-                <button type = "reset" id = "resetButton" class = "btn btn-dark white-text mt-5" onclick = "return confirm('Do you want to reset?');">Reset</button>
-            </form>
-        </div>
+                        <!-- textbox for user to type their first name--->
+                        <input type ="text" maxLength = "1000" name = "FirstName"  id = "fNameId" placeholder = "First name" onchange = "checkTextBox(this.id);"></input>
+                        <br/>
+                        <!--- textbox for user to type their last name--->
+                        <input type ="text"  maxLength = "1000" name = "LastName" id = "lNameId" placeholder = "Last name" onchange = "checkTextBox(this.id);"></input>	
+                        <br/>
+                        <!--- textbox for user to type their email--->
+                        <input type ="email" name = "Email" id = "emailId" required = "required" placeholder = "Email"></input>
+                        <br/>
+                        <!--- textbox for business phone--->
+                        <input type ="tel" name = "Phone" id = "phoneId" placeholder = "Phone example:403-222-3333" onchange = "checkPhone(this.id)"></input>
+                        <br/>
+                        <textarea name = "Concern" id = "concernId" placeholder = "What Do you need help with?" minLength = "1" onkeyup="validate();"></textarea>
+                        <br/>
+                        <!--- Button used to submit data --->
+                        <button type = "submit" name = "Submit" id = submitButton class = "btn btn-dark white-text mt-5" disabled = "disabled" onclick = "validate();">Submit</button>
+
+                        <!--- Button used to reset the fields -->
+                        <button type = "reset" id = "resetButton" class = "btn btn-dark white-text mt-5" onclick = "return confirm('Do you want to reset?');">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>	
+
         <!--Footer-->
         <footer class = "container">
             <%-include("ejsSub/footer.ejs")%>

@@ -23,7 +23,23 @@ var isLoggedIn = false;
 //Serves contact page if the url extension is "/contact."
 app.use("/Contact",(req,res)=>
 {
-    res.render("contact.ejs", {loggedIn: isLoggedIn});
+    mongo.connect(url, {useNewUrlParser:true, useUnifiedTopology:true}, (err, client)=>
+    {
+        var agencyArray = new Array();
+        if(err) throw err;  
+        var agencyDb = client.db("TravelExpertsDB");
+        var agencyCursor =  agencyDb.collection("agencies").find();
+        
+        agencyCursor.forEach((doc,err)=>
+        {
+            if(err) throw err;
+            agencyArray.push(doc);
+        }, ()=>
+        {
+            client.close();
+            res.render("contact.ejs", {agencies:agencyArray, loggedIn:isLoggedIn});
+        });
+    });
 });
 
 //Takes the user contact info and sends it to the database for an agent to see and contact customers
