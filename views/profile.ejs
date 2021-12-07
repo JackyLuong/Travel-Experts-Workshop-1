@@ -6,6 +6,45 @@
 
         <!--Calls whenWindowResizes.ejs to write a script that reads when the window is resized-->
         <%-include("ejsSub/whenWindowResizes.ejs");%> 
+        <style>
+            .InfoLable
+            {
+                color:royalblue;
+                margin-bottom: 10px;
+            }
+            .userInfo
+            {
+                border-bottom:  2px solid black;
+                color:black;
+                height:40px;
+            }
+            #accountData
+            {
+                margin-top: 30px;
+                width: 300px;
+            }
+            #accountIcon
+            {
+                width:20%;
+                height:auto;
+            }
+        </style>
+        <script>
+            $(document).ready(()=>
+            {
+                document.getElementById("fName").innerHTML = sessionStorage.getItem("userFName");
+                document.getElementById("lName").innerHTML = sessionStorage.getItem("userLName");
+                document.getElementById("email").innerHTML = sessionStorage.getItem("userEmail");
+                document.getElementById("bPhone").innerHTML = sessionStorage.getItem("userPhone");
+                document.getElementById("hPhone").innerHTML = sessionStorage.getItem("userHomePhone");
+                document.getElementById("sName").innerHTML = sessionStorage.getItem("userSName");
+                document.getElementById("country").innerHTML = sessionStorage.getItem("userCountry");
+                document.getElementById("prov").innerHTML = sessionStorage.getItem("userProv");
+                document.getElementById("city").innerHTML = sessionStorage.getItem("userCity");
+                document.getElementById("postal").innerHTML = sessionStorage.getItem("userPostal");
+                
+            });
+        </script>
 	</head>
 	
 	<body>
@@ -16,8 +55,41 @@
         <br/>
 
         <!--main container for content-->
-        <div class = "text-center">
-            <form method = "post" action = "/SignOut" class = "container-fluid" id= "form">
+        <div class = "container text-center">
+            <img src = account.svg id = "accountIcon"></img>
+            <div class = "container text-start" id = "accountData">
+                <label class = "InfoLable">First Name</label>
+                <p class = "userInfo" id = "fName" name = firstName>First Name:</p>
+
+                <label class = "InfoLable">Last Name</label>
+                <p class = "userInfo" id = "lName">Last Name:</p>
+
+                <label class = "InfoLable">Email</label>
+                <p class = "userInfo" id = "email">Email:</p>
+
+                <label class = "InfoLable">Business Phone</label>
+                <p class = "userInfo" id = "bPhone">Business Phone:</p>
+
+                <label class = "InfoLable">Home Phone</label>
+                <p class = "userInfo" id = "hPhone">Home Phone:</p>
+
+                <label class = "InfoLable">Street Name</label>
+                <p class = "userInfo" id = "sName">Street Name:</p>
+
+                <label class = "InfoLable">Country</label>
+                <p class = "userInfo" id = "country">Country:</p>
+
+                <label class = "InfoLable">Province</label>
+                <p class = "userInfo" id = "prov">Province:</p>
+
+                <label class = "InfoLable">City</label>
+                <p class = "userInfo" id = "city">City:</p>
+
+                <label class = "InfoLable">Postal Code</label>
+                <p class = "userInfo" id = "postal">Postal Code:</p>
+            </div>
+
+            <form method = "post" action = "/SignOut" class = "container-fluid text-center" id= "form">
                 <!--- Button used to submit data --->
                 <button type ="submit" class= "btn btn-dark white-text mt-5" name="signOut" id = submitButton>SignOut</button>
             </form>

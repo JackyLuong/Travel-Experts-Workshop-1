@@ -265,6 +265,18 @@ function validateLogin(email, password, userArray)
             document.getElementById("form").submit();
             errorMessage = "";
             document.getElementById("message").innerHTML = errorMessage;
+            
+            //Stores the user's account data for this session.
+            sessionStorage.setItem("userFName", userArray[i].custFirstName);
+            sessionStorage.setItem("userLName", userArray[i].custLastName);
+            sessionStorage.setItem("userEmail", userArray[i].custEmail);
+            sessionStorage.setItem("userPhone", userArray[i].custPhone);
+            sessionStorage.setItem("userHomePhone", userArray[i].custHomePhone);
+            sessionStorage.setItem("userSName", userArray[i].custStreetName);
+            sessionStorage.setItem("userCountry", userArray[i].custCountryName);
+            sessionStorage.setItem("userProv", userArray[i].custProvinceName);
+            sessionStorage.setItem("userCity", userArray[i].custCityName);
+            sessionStorage.setItem("userPostal", userArray[i].custPostal);
         }
         else
         {

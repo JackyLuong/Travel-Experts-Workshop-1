@@ -30,8 +30,11 @@ body
 /* Style for footer*/
 footer
 {
-bottom:0px;
-z-index: 1px;
+    margin-top: 30px;
+    width:100%;
+    text-align: center;
+    bottom:0px;
+    z-index: 1px;
 }
 /* Posiitons for navigation buttons when the screen width is greater than or equal to 1000px*/
 .navButtons

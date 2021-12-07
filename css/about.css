@@ -106,7 +106,7 @@
     background-color: white;
     float: left;
     width: 31%;
-    padding: 5px;
+    padding: 20px;
 }
 /* Clearfix (clear floats) */
 .moreInfoRow::after 
@@ -126,6 +126,12 @@
 #infoDesc
 {
     text-align: left;
+}
+/*Style for information icon*/
+#infoIcon
+{
+    width:30%;
+    height:auto;
 }
 /* Style when screen is less than 1000px*/
 @media only screen and (max-width:1000px)
@@ -147,5 +153,17 @@
     #achDesc
     {
         font-size: 100%;
+        width:100;
+    }
+    .containerDesc
+    {
+        width:100%;
+        float: none;
+    }
+    .containerImg
+    {
+        float: none;
+        width: 100%;
+        padding: 5px;
     }
 }
