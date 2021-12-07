@@ -2,7 +2,7 @@
 <html>
 	<head> 
         <!--Calls head.ejs to write a script that changes the title and imports all the basic js,css, and logos for the page-->
-        <%-include("ejsSub/head.ejs", {name:"Sign Up"})%> 
+        <%-include("ejsSub/head.ejs", {name:"Contact Us"})%> 
 
         <!--Script for SignUp Page-->
         <script src="contactScript.js"></script>
@@ -38,7 +38,9 @@
 
                 <div class = "column">
                     <!--Displays error message if user puts in an invalid input-->
-                    <p id= "message"></p>
+                    <div class = "container text-center">
+                        <p id= "message"></p>
+                    </div>
                     <form method = "post" action = "/Contact_Submit" class = "container-fluid text-center" id= "form">
                         <!-- textbox for user to type their name, max length is 1000 and user has to to type something in before submitting-->
 
