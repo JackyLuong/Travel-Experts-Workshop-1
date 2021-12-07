@@ -30,8 +30,8 @@
             <h1 id = "formTitle">Find Your Vacation</h1>
             <form class = "container">
                 <input type = "text" name = "searchPackageName" id  = "searchId" placeholder="Search Package Name"></input>
-                <input type = "date" name = "startDate" id  = "strDateId"></input> <!--- Creates date droplist for user to select a date --->	
-                <input type = "date" name = "endDate" id  = "endDateId"></input> <!--- Creates date droplist for user to select a date --->
+                <input type = "text" name = "startDate" id  = "strDateId" placeholder  = "Start Date" onblur="(this.type = 'text');"  onfocus ="(this.type = 'date');"></input> <!--- Creates date droplist for user to select a date --->	
+                <input type = "text" name = "endDate" id  = "endDateId" placeholder  = "End Date" onblur="(this.type = 'text');"  onfocus ="(this.type = 'date');"></input> <!--- Creates date droplist for user to select a date --->
                 <button type = "button" id = "searchPackageButton" onclick = "filter('searchId','strDateId','endDateId', 'packages');">Search</button>
             </form>
         </div>
